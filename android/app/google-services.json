@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "687320584922",
+    "firebase_url": "https://icook-5bf77.firebaseio.com",
+    "project_id": "icook-5bf77",
+    "storage_bucket": "icook-5bf77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687320584922:android:2936c8f4a9d290f102cbe3",
+        "android_client_info": {
+          "package_name": "com.workshop2.i_cook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687320584922-up4eq9jgaoacu9al36jrqabf7qvc8eoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUUHukuuzxpr8vk23-20KwlNRTpo7uQvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687320584922-up4eq9jgaoacu9al36jrqabf7qvc8eoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
