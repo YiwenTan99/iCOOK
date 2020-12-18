@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iCOOK/components/tipsnavi.dart';
+import 'package:iCOOK/components/bottomnavi.dart';
 
 class TipsScreen extends StatefulWidget {
   @override
@@ -241,7 +241,7 @@ class TipsNTricks extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
@@ -305,7 +305,7 @@ class ChoppingTips extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
@@ -366,7 +366,7 @@ class FryingTips extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
@@ -425,7 +425,7 @@ class PreservationTips extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
@@ -486,7 +486,7 @@ class ShoppingTips extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
@@ -546,7 +546,7 @@ class HealthTips extends StatelessWidget {
               context,
                 MaterialPageRoute(
                   builder: (context){
-                   return MyBottomNavigationBar1();
+                   return BottomNavi();
                   },
                 ),
               );
