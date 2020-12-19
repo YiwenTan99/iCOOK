@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'package:iCOOK/components/bottomnavi.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 
@@ -70,10 +71,16 @@ class _ScanScreenState extends State<ScanScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton( onPressed: (){
+      floatingActionButton:Container(
+        height: 80.0,
+        width: 80.0,
+        child: FittedBox(
+          child: FloatingActionButton(onPressed: (){
         _showChoiceDialog(context);
       },
         child: Icon(Icons.image),
+        backgroundColor: Colors.lime,),
+        ),
       ),
 
       // floatingActionButton: FloatingActionButton(
@@ -86,23 +93,92 @@ class _ScanScreenState extends State<ScanScreen> {
    Future<void> _showChoiceDialog(BuildContext context){
     return showDialog(context: context,builder: (BuildContext context){
       return AlertDialog(
-        title: Text("Load Image From"),
+        backgroundColor: Colors.lime[50],
+        title: Text(
+                  "Load Image From",
+                  style: TextStyle(
+                  fontSize: 20,
+                  ),
+                ),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
               GestureDetector(
-                child: Text("Gallery"),
+                child: Stack(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment(-0.9,0.0),
+                    child: Icon(Icons.photo_library)
+                  ),
+                  Align(
+                    alignment: Alignment(-0.4,0.0),
+                    child: Text(
+                      "Gallery",
+                      style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  )
+                ],
+                ),
                 onTap: () {
                   _openGallary(context);
                 },
               ),
               Padding(padding: EdgeInsets.all(8.0)),
               GestureDetector(
-                child: Text("Camera"),
+                child: Stack(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment(-0.9,0.0),
+                    child: Icon(Icons.photo_camera)
+                  ),
+                  Align(
+                    alignment: Alignment(-0.4,0.0),
+                    child: Text(
+                      " Camera",
+                      style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  )
+                ],
+                ),
                 onTap: () {
                   _openCamera(context);
                 },
               ),
+              // Align(
+              //   alignment: Alignment(0.9,0.0),
+              //   child: RaisedButton(
+              //     shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(18.0)),
+              //     onPressed: () {
+              //       Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) {
+              //           return BottomNavi1();
+              //         },
+              //       ),
+              //     );
+              //     },
+              //     child: const Text(
+              //       'Cancel', 
+              //       style: TextStyle(
+              //         fontSize: 14,
+              //         color: Colors.blueGrey
+              //       ),
+              //     ),
+              //     color: Colors.lime[100],
+              //     textColor: Colors.white,
+              //     elevation: 5,
+              //   ),
+              // ),  
             ],
           ),
         ),

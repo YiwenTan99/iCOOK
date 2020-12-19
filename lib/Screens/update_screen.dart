@@ -38,6 +38,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   List<DropdownMenuItem<Gender>> buildDropdownMenuItems(List genders) {
+    // ignore: deprecated_member_use
     List<DropdownMenuItem<Gender>> items = List();
     for (Gender gender in genders) {
       items.add(
