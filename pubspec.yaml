@@ -25,6 +25,7 @@ dependencies:
   image_picker: ^0.6.2+3
   flutter:
     sdk: flutter
+  duration: ^2.0.0
   material_design_icons_flutter: 4.0.5755
   flutter_launcher_icons: ^0.8.1
   # The following adds the Cupertino Icons font to your application.
@@ -57,21 +58,7 @@ flutter:
   assets:
     - assets/
     - assets/Test/
-    - assets/images/main.jpg
-    - assets/images/cooking.png
-    - assets/images/cooking1.jpg
-    - assets/images/login.jpg
-    - assets/images/logo.png
-    - assets/images/chop.png
-    - assets/images/fry.png
-    - assets/images/preserve.png
-    - assets/images/cart.png
-    - assets/images/health.png
-    - assets/images/chopping.jpg
-    - assets/images/frying.jpg
-    - assets/images/storage.jpg
-    - assets/images/shopping.jpg
-    - assets/images/health.jpg
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

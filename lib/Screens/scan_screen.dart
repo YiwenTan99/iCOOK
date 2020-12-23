@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:iCOOK/components/bottomnavi.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 
@@ -27,66 +26,141 @@ class _ScanScreenState extends State<ScanScreen> {
     });
   }
 
+  Future<bool> _onBackPressed(){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("Do you really want to exit the app?"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,false),
+          ),
+          FlatButton(
+            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,true),
+          )
+        ],
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
-        title: Text(
-          'iCOOK - Scan',
-          style: GoogleFonts.specialElite(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-            color: Colors.black,
+    return WillPopScope(
+          onWillPop: _onBackPressed,
+          child: Scaffold(
+        backgroundColor: Colors.grey[300],
+        appBar: AppBar(
+          backgroundColor: Colors.lightGreen,
+          title: Text(
+            'iCOOK - Scan',
+            style: GoogleFonts.specialElite(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.black,
+            ),
+          ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+        ),
+        body: _loading
+            ? Container(
+          alignment: Alignment.center,
+          child: CircularProgressIndicator(),
+        )
+            : Container(
+              width: MediaQuery.of(context).size.width,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _image == null ? Container(
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                          child: Column(
+                            children: <Widget>[
+                                SizedBox(
+                                  height: 110,
+                                ),
+                                Text(
+                                  "Tap on the right bottom image icon to access the scan feature",
+                                    style: TextStyle(
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey[800]
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Image(
+                                      image: AssetImage("assets/images/arrow.png"),
+                                        width: 230,
+                                        height: 200,
+                                      ),
+                                    ),
+                                  ] 
+                                ),
+                              ),
+                    ) : Image.file(_image),
+                    SizedBox(
+                      height: 30,
+                    ),
+                       _outputs != null
+                        ? Column(
+                            children: [
+                              Text(
+                                "${_outputs[0]["label"]} Detected",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20.0,
+                                        background: Paint()..color = Colors.grey[300],
+                                      ),
+                                ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              RaisedButton(
+                                color: Colors.lightGreen[50],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                                onPressed: () {},
+                                child: Text(
+                                  "Suggested Recipe",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Colors.grey[800], 
+                                  ),
+                                ),
+                              
+                              ),
+                            ],
+                          )
+                          : Container(),
+                  ],
+                ),
+              ),
+            ),
+        floatingActionButton:Container(
+          height: 80.0,
+          width: 80.0,
+          child: FittedBox(
+            child: FloatingActionButton(onPressed: (){
+          _showChoiceDialog(context);
+        },
+          child: Icon(Icons.image),
+          backgroundColor: Colors.lime,),
           ),
         ),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-      ),
-      body: _loading
-          ? Container(
-        alignment: Alignment.center,
-        child: CircularProgressIndicator(),
-      )
-          : Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _image == null ? Container() : Image.file(_image),
-            SizedBox(
-              height: 20,
-            ),
-            _outputs != null
-                ? Text(
-              "${_outputs[0]["label"]}",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                background: Paint()..color = Colors.white,
-              ),
-            )
-                : Container()
-          ],
-        ),
-      ),
-      floatingActionButton:Container(
-        height: 80.0,
-        width: 80.0,
-        child: FittedBox(
-          child: FloatingActionButton(onPressed: (){
-        _showChoiceDialog(context);
-      },
-        child: Icon(Icons.image),
-        backgroundColor: Colors.lime,),
-        ),
-      ),
 
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: pickImage,
-      //   child: Icon(Icons.image),
-      // ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: pickImage,
+        //   child: Icon(Icons.image),
+        // ),
+      ),
     );
   }
 

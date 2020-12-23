@@ -59,109 +59,131 @@ class _UpdateScreenState extends State<UpdateScreen> {
     });
   }
 
+  Future<bool> _onBackPressed(){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("Do you really want to exit the app?"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,false),
+          ),
+          FlatButton(
+            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,true),
+          )
+        ],
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
-        title: Text(
-          'iCOOK - Profile',
-          style: GoogleFonts.specialElite(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-            color: Colors.black,
+    return WillPopScope(
+        onWillPop: _onBackPressed,
+        child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.lightGreen,
+          title: Text(
+            'iCOOK - Profile',
+            style: GoogleFonts.specialElite(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.black,
+            ),
           ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
         ),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-      ),
-      body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
-        child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: ListView(
-            children: [
-              buildTextField("Name", ""), //pass value
-              buildTextField("Email", ""),
-              Text(
-                "Gender",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black54,
+        body: Container(
+          padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: ListView(
+              children: [
+                buildTextField("Name", ""), //pass value
+                buildTextField("Email", ""),
+                Text(
+                  "Gender",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black54,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              DropdownButton(
-                value: _selectedGender,
-                items: _dropdownMenuItems,
-                onChanged: onChangeDropdownItem,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                SizedBox(
+                  height: 5,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Birthday",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black54,
+                DropdownButton(
+                  value: _selectedGender,
+                  items: _dropdownMenuItems,
+                  onChanged: onChangeDropdownItem,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "${selectedDate.toLocal()}".split(' ')[0],
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              RaisedButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text('Select date'),
-                  color: Colors.blueGrey[100],
+                Text(
+                  "Birthday",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black54,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "${selectedDate.toLocal()}".split(' ')[0],
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                RaisedButton(
+                    onPressed: () => _selectDate(context),
+                    child: Text('Select date'),
+                    color: Colors.blueGrey[100],
 
+                  ),
+                SizedBox(
+                  height: 30,
                 ),
-              SizedBox(
-                height: 30,
-              ),
-              // ignore: missing_required_param
-              RoundedButton(
-                text: "UPDATE",
-                press: () {},
-                textColor: Colors.white,
-                color: Colors.red[200],
-              ),
-              // ignore: missing_required_param
-              OutButton(
-                text: "LOG OUT",
-                textColor: Colors.redAccent,
-                color: Colors.red[200],
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return WelcomeScreen();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ],
+                // ignore: missing_required_param
+                RoundedButton(
+                  text: "UPDATE",
+                  press: () {},
+                  textColor: Colors.white,
+                  color: Colors.red[200],
+                ),
+                // ignore: missing_required_param
+                OutButton(
+                  text: "LOG OUT",
+                  textColor: Colors.redAccent,
+                  color: Colors.red[200],
+                  press: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return WelcomeScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

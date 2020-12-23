@@ -8,208 +8,230 @@ class TipsScreen extends StatefulWidget {
 }
 
 class _TipsScreenState extends State<TipsScreen> {
+  Future<bool> _onBackPressed(){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("Do you really want to exit the app?"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,false),
+          ),
+          FlatButton(
+            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,true),
+          )
+        ],
+      )
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
-        title: Text(
-          'iCOOK - Tips & Tricks',
-          style: GoogleFonts.specialElite(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-            color: Colors.black,
+    return WillPopScope(
+        onWillPop: _onBackPressed,
+          child: Scaffold(
+          appBar: AppBar(
+          backgroundColor: Colors.lightGreen,
+          title: Text(
+            'iCOOK - Tips & Tricks',
+            style: GoogleFonts.specialElite(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.black,
+            ),
           ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
         ),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
+        body: Container(
+            child:ListView(
+              children: <Widget>[
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/cooking.png"),
+                      backgroundColor: Colors.lime[200],
+                      radius: 23, 
+                    ), 
+                  ),
+                  title: Text(
+                    'Cooking Tips',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return TipsNTricks();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/chop.png"),
+                      backgroundColor: Colors.lime[200],
+                      radius: 23,
+                    ),
+                  ),
+                  title: Text(
+                    'Preparation & Chopping',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return ChoppingTips();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/fry.png"),
+                      backgroundColor: Colors.lime[200],
+                      radius: 23,
+                    ), 
+                  ),
+                  title: Text(
+                    'Frying Tips',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return FryingTips();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/preserve.png"),
+                      backgroundColor: Colors.lime[200],
+                      radius: 23,
+                    ),   
+                  ),
+                  title: Text(
+                    'Food Storage Tips',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return PreservationTips();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.lime[200],
+                      radius: 23, 
+                      backgroundImage: AssetImage("assets/images/cart.png")
+                    ),
+                  ),
+                  title: Text(
+                    'Food Shopping Tips',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return ShoppingTips();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/health.png"),
+                      backgroundColor: Colors.lime[200],
+                      radius: 23,
+                    ), 
+                  ),
+                  title: Text(
+                    'Health Tips',
+                    style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context){
+                        return HealthTips();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              ]
+            ),
+        )
       ),
-      body: Container(
-          child:ListView(
-            children: <Widget>[
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/cooking.png"),
-                    backgroundColor: Colors.lime[200],
-                    radius: 23, 
-                  ), 
-                ),
-                title: Text(
-                  'Cooking Tips',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return TipsNTricks();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/chop.png"),
-                    backgroundColor: Colors.lime[200],
-                    radius: 23,
-                  ),
-                ),
-                title: Text(
-                  'Preparation & Chopping',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return ChoppingTips();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/fry.png"),
-                    backgroundColor: Colors.lime[200],
-                    radius: 23,
-                  ), 
-                ),
-                title: Text(
-                  'Frying Tips',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return FryingTips();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/preserve.png"),
-                    backgroundColor: Colors.lime[200],
-                    radius: 23,
-                  ),   
-                ),
-                title: Text(
-                  'Food Storage Tips',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return PreservationTips();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.lime[200],
-                    radius: 23, 
-                    backgroundImage: AssetImage("assets/images/cart.png")
-                  ),
-                ),
-                title: Text(
-                  'Food Shopping Tips',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return ShoppingTips();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/health.png"),
-                    backgroundColor: Colors.lime[200],
-                    radius: 23,
-                  ), 
-                ),
-                title: Text(
-                  'Health Tips',
-                  style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return HealthTips();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-            ]
-          ),
-      )
     );
   }
 }
