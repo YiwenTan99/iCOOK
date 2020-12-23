@@ -71,7 +71,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 ),
                 FlatButton(
                   child:
-                      Text("yes", style: TextStyle(color: Colors.lightGreen)),
+                      Text("Yes", style: TextStyle(color: Colors.lightGreen)),
                   onPressed: () => Navigator.pop(context, true),
                 )
               ],
