@@ -59,30 +59,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
     });
   }
 
-  Future<bool> _onBackPressed(){
+  Future<bool> _onBackPressed() {
     return showDialog(
-      context: context,
-      builder: (context)=>AlertDialog(
-        title: Text("Do you really want to exit the app?"),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,false),
-          ),
-          FlatButton(
-            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,true),
-          )
-        ],
-      )
-    );
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Do you really want to exit the app?"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("No", style: TextStyle(color: Colors.lightGreen)),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                FlatButton(
+                  child:
+                      Text("yes", style: TextStyle(color: Colors.lightGreen)),
+                  onPressed: () => Navigator.pop(context, true),
+                )
+              ],
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Scaffold(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.lightGreen,
           title: Text(
@@ -151,11 +151,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   height: 5.0,
                 ),
                 RaisedButton(
-                    onPressed: () => _selectDate(context),
-                    child: Text('Select date'),
-                    color: Colors.blueGrey[100],
-
-                  ),
+                  onPressed: () => _selectDate(context),
+                  child: Text('Select date'),
+                  color: Colors.blueGrey[100],
+                ),
                 SizedBox(
                   height: 30,
                 ),
@@ -198,7 +197,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             labelStyle: TextStyle(
-            fontSize: 24,
+              fontSize: 24,
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
@@ -213,16 +212,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101),
-        builder: (BuildContext context, Widget child) {
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+      builder: (BuildContext context, Widget child) {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.light().copyWith(
               primary: Colors.lightGreen,
-            ),//Background color
+            ), //Background color
           ),
           child: child,
         );
