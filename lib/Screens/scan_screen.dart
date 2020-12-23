@@ -139,7 +139,15 @@ class _ScanScreenState extends State<ScanScreen> {
                               ),
                             ],
                           )
-                          : Container(),
+                          : Container(
+                            // child: Column(
+                            //   children:[
+                            //    Text(
+                            //      "Object Couldn't detect"
+                            //    ),
+                            //   ],
+                            // ),
+                            ),        
                   ],
                 ),
               ),
