@@ -24,6 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
   // text field state
   String email = '';
   String password = '';
+  String name = '';
   String error = '';
 
   @override
@@ -37,43 +38,48 @@ class _SignupScreenState extends State<SignupScreen> {
               leading: new IconButton(
                 icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return WelcomeScreen();
-                      },
-                    ),
-                  );
+                  Navigator.of(context).pop();
                 },
               ),
             ),
             extendBodyBehindAppBar: true,
-            body: Container(
-                height: MediaQuery.of(context).size.height,
+            body: SingleChildScrollView(
+              child: Container(
+                //  height: MediaQuery.of(context).size.height,
                 width: double.infinity,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/login.jpg"),
-                    alignment: Alignment.center,
+                    alignment: Alignment.topCenter,
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        height: 90,
+                        height: 120,
                       ),
                       Image.asset(
                         "assets/images/logo.png",
+                        // height: 250.0,
                       ),
                       SizedBox(
-                        height: 80,
+                        height: 60,
+                      ),
+                      RoundedInputField(
+                        validator: (_name) =>
+                            _name.isEmpty ? 'Enter a name' : null,
+                        hintText: "Username",
+                        icon: Icons.person,
+                        onChanged: (_name) {
+                          setState(() {
+                            name = _name;
+                          });
+                        },
                       ),
                       RoundedInputField(
                         validator: (_email) =>
@@ -113,8 +119,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         press: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
+                            dynamic result =
+                                await _auth.registerWithEmailAndPassword(
+                                    email, password, name);
                             if (result == null) {
                               setState(() {
                                 error = 'please supply a valid email';
@@ -149,7 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                       ),
                       SizedBox(
-                        height: 200,
+                        height: 400,
                       ),
                     ],
                   ),

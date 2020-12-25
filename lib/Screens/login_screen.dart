@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iCOOK/Screens/Signup_screen.dart';
-import 'package:iCOOK/Screens/Welcome_screen.dart';
-import 'package:iCOOK/components/bottomnavi.dart';
+
 import 'package:iCOOK/components/already_have_an_account_acheck.dart';
+import 'package:iCOOK/components/bottomnavi.dart';
 import 'package:iCOOK/components/rounded_button.dart';
 import 'package:iCOOK/components/rounded_input_field.dart';
 import 'package:iCOOK/components/rounded_password_field.dart';
@@ -39,26 +39,19 @@ class _LoginScreenState extends State<LoginScreen> {
               leading: new IconButton(
                 icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context){
-                      return WelcomeScreen();
-                      },
-                    ),
-                  );
+                  Navigator.of(context).pop();
                 },
               ),
             ),
             extendBodyBehindAppBar: true,
-            body: Container(
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
+            body: SingleChildScrollView(
+              child: Container(
+                //height: MediaQuery.of(context).size.height,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/login.jpg"),
-                    alignment: Alignment.center,
+                    alignment: Alignment.topCenter,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -68,15 +61,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                         SizedBox(
-                          height: 90,
+                        SizedBox(
+                          height: 120,
                         ),
                         Image.asset(
                           'assets/images/logo.png',
-
+                          //height: size.height * 0.2,
                         ),
                         SizedBox(
-                          height: 80,
+                          height: 60,
                         ),
                         RoundedInputField(
                           validator: (_email) =>
@@ -98,7 +91,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         RoundedPasswordField(
                           validator: (_password) => _password.length < 6
                               ? 'Enter a password minimum 6 character'
-                              : null,                      
+                              : null,
+                          hintText: "Password",
+                          icon: Icons.mail,
                           onChanged: (_password) {
                             setState(() {
                               password = _password;
@@ -152,11 +147,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         SizedBox(
-                          height: 200,
+                          height: 400,
                         )
                       ],
                     ),
                   ),
+                ),
               ),
             ),
           );
