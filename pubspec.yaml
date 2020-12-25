@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter_dialogflow: ^0.1.2
   url_launcher: ^5.4.0
   image_picker: ^0.6.2+17
   flutter:
@@ -60,6 +61,7 @@ flutter:
     - assets/
     - assets/Test/
     - assets/images/
+    - assets/chefbot1-obhy-9a3cbfb8e966.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

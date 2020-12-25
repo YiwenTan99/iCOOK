@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iCOOK/components/bottomnavi.dart';
 
+import 'chefbot.dart';
+
 class TipsScreen extends StatefulWidget {
   @override
   _TipsScreenState createState() => _TipsScreenState();
@@ -230,7 +232,25 @@ class _TipsScreenState extends State<TipsScreen> {
               ),
               ]
             ),
-        )
+        ),
+        floatingActionButton:Container(
+          height: 80.0,
+          width: 80.0,
+          child: FittedBox(
+          child: FloatingActionButton(onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return ChefBot();
+                },
+              ),
+            );
+        },
+          child: Icon(Icons.support_agent),
+          backgroundColor: Colors.lime[400],),
+          ),
+        ),
       ),
     );
   }

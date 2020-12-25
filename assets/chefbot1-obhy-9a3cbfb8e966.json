@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chefbot1-obhy",
+  "private_key_id": "9a3cbfb8e966eba05b3cdc9ac41b028f46bdc55c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/8I/+rt9wu7vw\nyCMWDCwhZQjD4IXsNSirHLPo4EKxttxobcs9PSZVutX6GtHo23xAJAzN0NyBn2yG\nz4+XpiDmQsXShjRWgOJj9f2xTi3VVwBjjnZvchUcYkPyKa36FkbiJk7L+HusHBoJ\nmh2PQbo4iWnDyz1CN2oig3Oe5vzALnvRwRkeHROVbeq263RVmfpojpy1xTB01hs9\nU7Bf+Y423xXHZiWhGhwJ4j17+I+6Sap6xezpu7HcWBp6N2zAqgHAwfxqom6Y3ye5\nfXLbKDibmfydStm1gPyGAD5tmQv3yqzqlf9dxn8NGP0YfZbY58qIKlPw1vjtkTYf\npbjp7jIrAgMBAAECggEAC1ELrGBzHBp1gkTKjMo6790dHy9ltf+MXkpa8SgHxqKZ\nbC7NBNdOI0/Yvd5G8gu+z6lQd/IQjjPwGiKyvKY22lylfTwcad0/e9VNF98cJK/0\nfeowYXHAfOPuTaDXeR9HHp5TlwMXh5ZAksBbbc7aQ+sWKU0aV4Uc5NwLPRsxW8NH\nsXTFOWWZs1SfGRL10OwWLA3gPb4ITyEA5T7RTAw4CTeiVDu2KZtgcBl4eAUVfTDB\nGI1QkySFHROq0CDKc4eryeujYm2Kxrp2pfitRoFbNOSmoRnRsyNKrMNzJ33GhFfE\nyuvSQCCNM/X0tIpK3uTgehViEpUc1XMMF5JeEGwwQQKBgQDmAwn/DphH6kxDOci7\nGtSS0rTxIBnwiNb/xe5i8ZZGq7xO2vw1gQVCxwTlMQIKVOmMcBmSo0KZFAWTx+Fx\nPLVRMCpCDHTicXYAG+zuVAZjHS8nVyBUXbrG2HYP8cRiYgFOxANHiC1Yy0r1jzjH\nPbbKD1pxI7YYoYnv0j3m/JmV/wKBgQDVoE7GcFNMZt6187lSrajX8L7id5J3wxkT\nodD+RK5Fl+DRzDZeBGsbSJGDp+D0jLafz2qOL9/nYoG0jpXxsFZCNw6hlcTJ4iky\nL+UbG6Ds7kLZIhhQitsGgJy83Ur9MCLdtRumnLNMHp05MVoNAo/qz1jizbZhc8mw\nqbswna2b1QKBgQCcuhVlphw9ZHjylb0hQPb31HtWkfka3SMixUvaP6OWJA777FtO\nWcur5NCBGxO41oMNHpVORdBrXikuuVP0RNmHqLoipzo90fIFwQGAo+B2SLyIoeV1\nlyhdtcE8vBCEuSMK+KUDaNb9WgiJqj2WBYc3x55o2VyLDAdhUnC7pANDIQKBgQC5\nRHctKBtFxm1dtYrCxnMJG/QgKf0vulbULOE4s03Ec0x6BrYb4Y8WMWBpor24uRRl\nEphhyelQHaFJeuNVoU2dzWv1/RKW13pM2TbDxLlS4eu9rhESQOplAENulCjF3epP\nBxN88qeY23AVOtTTNaakyMBYqnmCmM2RVhJOvmDjJQKBgGlP/z1Qz2GBT9kS/oLp\nAt14OV+ZFG9LWiFt+ZJlM/52URxn31lpsNHr3PDWjP5zH+Er6QrHOqpboJw8gXTO\n/tJvFn37YZ4s5nOWpI/SB3AWagzjkTUZrAkZqcgaScvMJKAwOIULm1LrduXbcQ1k\nRJwDEA9JdNEXaduhW1yZXiaC\n-----END PRIVATE KEY-----\n",
+  "client_email": "chefbot@chefbot1-obhy.iam.gserviceaccount.com",
+  "client_id": "114945705947037158748",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chefbot%40chefbot1-obhy.iam.gserviceaccount.com"
+}
