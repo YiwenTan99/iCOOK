@@ -96,7 +96,7 @@ class _ChefBot extends State<ChefBot> {
             },
          ),
         title: Text(
-          'Chef Bot',
+          'ChefBot',
           style: GoogleFonts.specialElite(
             fontWeight: FontWeight.bold,
             fontSize: 24,

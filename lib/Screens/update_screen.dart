@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iCOOK/Screens/Welcome_screen.dart';
 
 import 'package:iCOOK/components/outline_button.dart';
@@ -36,8 +37,10 @@ class Gender {
 }
 
 class _UpdateScreenState extends State<UpdateScreen> {
+  
   final _formKey = GlobalKey<FormState>();
   final List<String> gender = ['male', 'female'];
+  // ignore: unused_field
   int _currentIndex = 2;
   List<Gender> _genders = Gender.getGenders();
   List<DropdownMenuItem<Gender>> _dropdownMenuItems;
@@ -54,12 +57,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   List<DropdownMenuItem<Gender>> buildDropdownMenuItems(List genders) {
+    // ignore: deprecated_member_use
     List<DropdownMenuItem<Gender>> items = List();
-    for (Gender company in genders) {
+    for (Gender gender in genders) {
       items.add(
         DropdownMenuItem(
-          value: company,
-          child: Text(company.name),
+          value: gender,
+          child: Text(gender.name),
         ),
       );
     }
@@ -128,13 +132,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
             //     Text(snapshot.data.documents[0]['Usename']),
             //   ],
             // );
-
-            return Form(
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: Form(
               key: _formKey,
               child: Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.lightGreen,
-                  title: Text('iCOOK - profile'),
+                  title: Text(
+                    'iCOOK - Profile',
+                    style: GoogleFonts.specialElite(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: Colors.black,
+                    ),
+                  ),
                   centerTitle: true,
                   automaticallyImplyLeading: false,
                 ),
@@ -147,7 +159,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     child: ListView(
                       children: [
                         SizedBox(
-                          height: 35,
+                          height: 10,
                         ),
 
                         // BuildTextField(
@@ -162,7 +174,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         //     });
                         //   },
                         // ),
+                       Text(
+                          "Name",
+                            style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        ),
                         TextFormField(
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                           controller: _username,
                           textCapitalization: TextCapitalization.none,
                           keyboardType: TextInputType.text,
@@ -175,7 +199,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             }
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 30),
                             hintText: 'Username',
                             hintStyle: TextStyle(
                               color: Colors.black54,
@@ -212,7 +235,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           },
                         ),*/
                         SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         Text(
                           "Gender",
@@ -221,19 +244,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             color: Colors.black54,
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
                         DropdownButton(
                           value: _selectedGender,
                           items: _dropdownMenuItems,
                           onChanged: onChangeDropdownItem,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                           onTap: () {
                             ontapSelected = true;
                           },
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         Text(
                           "Birthday",
@@ -249,7 +274,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         //     ? Text("${selectedDate.toLocal()}".split(' ')[0])
                         //     :
                         Text(snapshot.data.documents[5]['Birthday Date']
-                            .toString()),
+                            .toString(),
+                          style: TextStyle(  
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),   
+                        ),
                         SizedBox(
                           height: 5.0,
                         ),
@@ -264,7 +295,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         RoundedButton(
                             textColor: Colors.white,
                             color: Colors.red[200],
-                            text: "Edit",
+                            text: "EDIT",
                             press: () async {
                               if (_formKey.currentState.validate()) {
                                 dynamic result =
@@ -290,7 +321,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         OutButton(
                           text: "LOG OUT",
                           textColor: Colors.redAccent,
-                          color: Colors.pink[50],
+                          color: Colors.red[200],
                           press: () {
                             Navigator.push(
                               context,
@@ -339,6 +370,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   },
                 ),*/
               ),
+              ),  
             );
           } else {
             return Center(
@@ -375,6 +407,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101));
+        
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;

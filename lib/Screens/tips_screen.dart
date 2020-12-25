@@ -10,29 +10,11 @@ class TipsScreen extends StatefulWidget {
 }
 
 class _TipsScreenState extends State<TipsScreen> {
-  Future<bool> _onBackPressed(){
-    return showDialog(
-      context: context,
-      builder: (context)=>AlertDialog(
-        title: Text("Do you really want to exit the app?"),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,false),
-          ),
-          FlatButton(
-            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,true),
-          )
-        ],
-      )
-    );
-  }
   
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: _onBackPressed,
+        onWillPop: () async => false,
           child: Scaffold(
           appBar: AppBar(
           backgroundColor: Colors.lightGreen,
@@ -247,15 +229,20 @@ class _TipsScreenState extends State<TipsScreen> {
               ),
             );
         },
-          child: Icon(Icons.support_agent),
-          backgroundColor: Colors.lime[400],),
+          child: Icon(
+            Icons.support_agent,
+            color: Colors.lightGreen[50],
+            size:28.0,
+          ),
+          backgroundColor: Colors.red[200]),
           ),
         ),
       ),
     );
   }
 }
- Widget buildText(String labelText) {
+
+  Widget buildText(String labelText) {
     return Card(
       child: ListTile(
         leading: Icon(Icons.done),

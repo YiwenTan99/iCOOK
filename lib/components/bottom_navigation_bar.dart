@@ -12,6 +12,7 @@ class BottomNavigationbBar extends StatelessWidget {
   })  : _currentIndex = currentIndex,
         super(key: key);
 
+  // ignore: unused_field
   final int _currentIndex;
 
   @override
