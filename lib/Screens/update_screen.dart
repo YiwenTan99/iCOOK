@@ -406,7 +406,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        lastDate: DateTime(2101),
+        
+        builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light().copyWith(
+              primary: Colors.lightGreen,
+            ),//Background color
+          ),
+          child: child,
+        );
+      },
+    );
         
     if (picked != null && picked != selectedDate)
       setState(() {

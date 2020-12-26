@@ -63,7 +63,7 @@ class _ScanScreenState extends State<ScanScreen> {
                           child: Column(
                             children: <Widget>[
                                 SizedBox(
-                                  height: 110,
+                                  height: 130,
                                 ),
                                 Text(
                                   "Tap on the right bottom image icon to access the scan feature",
@@ -78,7 +78,7 @@ class _ScanScreenState extends State<ScanScreen> {
                                     child: Image(
                                       image: AssetImage("assets/images/arrow.png"),
                                         width: 230,
-                                        height: 200,
+                                        height: 300,
                                       ),
                                     ),
                                   ] 
