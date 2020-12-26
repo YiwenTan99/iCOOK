@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iCOOK/Screens/Signup_screen.dart';
 import 'package:iCOOK/Screens/login_screen.dart';
 import 'package:iCOOK/components/rounded_button.dart';
@@ -9,7 +12,26 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1500)
+    );
+    Timer(Duration(milliseconds: 200),()=> _animationController.forward());
+    _animationController.forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +49,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 320.0),
+            SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(-1,0),
+                end: Offset.zero,
+              ).animate(_animationController),
+              child: FadeTransition(
+                opacity: _animationController,
+                child: Container(
+                  child: Text(
+                    'Bon Appetit',
+                    style: GoogleFonts.lobster(
+                      fontSize: 30,
+                      color: Colors.blueGrey[800],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 220.0),
+             SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(1,0),
+                end: Offset.zero,
+              ).animate(_animationController),
+              child: FadeTransition(
+                opacity: _animationController,
+                child: Container(
+                  child: Text(
+                    'Cook With Love',
+                    style: GoogleFonts.lobster(
+                      fontSize: 30,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ),
+            ),
+             ),
+             SizedBox(height: 100.0),
             // ignore: missing_required_param
             RoundedButton(
               text: "SIGN UP",
