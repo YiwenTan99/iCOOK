@@ -73,7 +73,9 @@ class RecipesScreenState extends State<RecipesScreen> {
           automaticallyImplyLeading: false,
           centerTitle: true,
             bottom: TabBar(
-              labelColor: Theme.of(context).indicatorColor,
+              unselectedLabelColor: Colors.red[100],
+              indicatorColor: Colors.redAccent,
+              labelColor: Colors.redAccent,
               tabs: [
                 Tab(icon: Icon(Icons.restaurant, size: _iconSize)),
                 Tab(icon: Icon(Icons.favorite, size: _iconSize)),
