@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iCOOK/components/bottomnavi.dart';
-
 import 'chefbot.dart';
 
 class TipsScreen extends StatefulWidget {

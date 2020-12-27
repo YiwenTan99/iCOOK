@@ -1,39 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iCOOK/Screens/recipes.dart';
-import 'package:iCOOK/components/list_recipe.dart';
+import 'package:iCOOK/components/recipeWidgets/recipe_card.dart';
+import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/utils/store.dart';
 
 class RecipesScreen extends StatefulWidget {
   @override
-  _RecipesScreenState createState() => _RecipesScreenState();
+  State<StatefulWidget> createState() => new RecipesScreenState();
 }
 
-class _RecipesScreenState extends State<RecipesScreen> {
-  Future<bool> _onBackPressed(){
-    return showDialog(
-      context: context,
-      builder: (context)=>AlertDialog(
-        title: Text("Do you really want to exit the app?"),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,false),
-          ),
-          FlatButton(
-            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,true),
-          )
-        ],
-      )
-    );
+class RecipesScreenState extends State<RecipesScreen> {
+  // New member of the class:
+  List<Recipe> recipes = getRecipes();
+  List<String> userFavorites = getFavoritesIDs();
+
+  // New method:
+  // Inactive widgets are going to call this method to
+  // signalize the parent widget RecipesScreen to refresh the list view.
+  void _handleFavoritesListChanged(String recipeID) {
+    // Set new state and refresh the widget:
+    setState(() {
+      if (userFavorites.contains(recipeID)) {
+        userFavorites.remove(recipeID);
+      } else {
+        userFavorites.add(recipeID);
+      }
+    });
   }
+  
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Scaffold(
-        backgroundColor: Colors.grey[800],
-          appBar: AppBar(
+    // New method:
+    Padding _buildRecipes(List<Recipe> recipesList) { // New code
+      return Padding( // New code
+          // Padding before and after the list view:
+          padding: const EdgeInsets.symmetric(vertical: 5.0), // New code
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  itemCount: recipesList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return new RecipeCard(
+                      recipe: recipesList[index],
+                      inFavorites:
+                          userFavorites.contains(recipesList[index].id),
+                      onFavoriteButtonPressed: _handleFavoritesListChanged,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ); // New code
+    }
+
+    const double _iconSize = 20.0;
+
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
           backgroundColor: Colors.lightGreen,
           title: Text(
             'iCOOK - Recipes',
@@ -45,177 +72,30 @@ class _RecipesScreenState extends State<RecipesScreen> {
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
-          actions:<Widget>[
-            IconButton( 
-              onPressed: (){
-                showSearch(context: context, delegate: RecipeSearch());
-              },icon: Icon(Icons.search, color:Colors.white,size:30.0),
+            bottom: TabBar(
+              labelColor: Theme.of(context).indicatorColor,
+              tabs: [
+                Tab(icon: Icon(Icons.restaurant, size: _iconSize)),
+                Tab(icon: Icon(Icons.favorite, size: _iconSize)),
+              ],
             ),
-          ],
+          ),
+        body: Padding(
+          padding: EdgeInsets.all(5.0),
+          child: TabBarView(
+            // Replace placeholders:
+            children: [
+              // Display recipes of type fish:
+              _buildRecipes(recipes
+                  .toList()),
+              // Display favorite recipes:
+              _buildRecipes(recipes
+                  .where((recipe) => userFavorites.contains(recipe.id))
+                  .toList()),
+            ],
+          ),
         ),
-        body: Container(
-            child: Padding(
-              padding: EdgeInsets.all(12.0),
-              child:Column(
-                children: <Widget>[
-                  Expanded(
-                    child: GridView.count(
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      primary: false,
-                      children: <Widget>[
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          elevation: 10,
-                          child: GestureDetector(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/tomatoegg.jpg"),
-                                  fit: BoxFit.fitWidth,
-                                  colorFilter: 
-                                  ColorFilter.mode(Colors.black.withOpacity(0.7), 
-                                  BlendMode.dstATop),
-                                  alignment: Alignment.topCenter,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Tomato Eggs',
-                                  textAlign: TextAlign.center,
-                                  style:GoogleFonts.russoOne(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                    color: Colors.grey[900],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context){
-                                  return RecipeDetail();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          elevation: 10,
-                          child: GestureDetector(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/tomatoegg.jpg"),
-                                  fit: BoxFit.fitWidth,
-                                  colorFilter: 
-                                  ColorFilter.mode(Colors.black.withOpacity(0.7), 
-                                  BlendMode.dstATop),
-                                  alignment: Alignment.topCenter,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Tomato Eggs',
-                                  textAlign: TextAlign.center,
-                                  style:GoogleFonts.russoOne(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                    color: Colors.grey[900],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context){
-                                  return null;
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                      crossAxisCount: 2,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        )
       ),
     );
   }
-}
-
-class RecipeSearch extends SearchDelegate<RecipeItem>{
-  @override
-  List<Widget> buildActions(BuildContext context) {
-      return [
-        IconButton(
-          icon: Icon(Icons.clear),
-          onPressed: () {
-            query="";
-          },
-        ),
-      ];
-    }
-  
-    @override
-    Widget buildLeading(BuildContext context) {
-       return IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          close(context, null);
-        },
-      );
-    }
-  
-    @override
-    Widget buildResults(BuildContext context) {
-      return Center(child: Text(query, style: TextStyle(fontSize: 20),));
-    }
-  
-    @override
-    Widget buildSuggestions(BuildContext context) {
-      
-      final mylist = query.isEmpty? loadRecipeItem()
-      : loadRecipeItem().where((p)=>p.category.startsWith(query)).toList();
-
-      return mylist.isEmpty? Text('No Results Found...', style: TextStyle(fontSize:20),): ListView.builder(
-        itemCount: mylist.length,
-        itemBuilder: (context,index){
-          final RecipeItem listitem = mylist[index];
-          return ListTile(
-            onTap: (){
-              showResults(context);
-            },
-            title: 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(listitem.title,style:TextStyle(fontSize:20),),
-                Text(listitem.category,style:TextStyle(color:Colors.grey),),
-                Divider()
-              ],
-            ),);
-        }
-      );
-    }
-
 }
