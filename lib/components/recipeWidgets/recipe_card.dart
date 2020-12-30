@@ -3,12 +3,12 @@ import 'package:iCOOK/models/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
-  final bool inFavorites;
+  // final int inFavorites;
   final Function onFavoriteButtonPressed;
 
   RecipeCard(
       {@required this.recipe,
-      @required this.inFavorites,
+      // @required this.inFavorites,
       @required this.onFavoriteButtonPressed});
 
   @override
@@ -18,9 +18,10 @@ class RecipeCard extends StatelessWidget {
         constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
         onPressed: () => onFavoriteButtonPressed(recipe.id),
         child: Icon(
+          Icons.favorite_border,
           // Conditional expression:
           // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-          inFavorites == true ? Icons.favorite : Icons.favorite_border,
+          // inFavorites == true ? Icons.favorite : Icons.favorite_border,
         ),
         elevation: 2.0,
         fillColor: Colors.white,
@@ -46,7 +47,7 @@ class RecipeCard extends StatelessWidget {
                 Icon(Icons.timer, size: 20.0),
                 SizedBox(width: 5.0),
                 Text(
-                  recipe.getDurationString,
+                  recipe.duration.toString() + "minutes",
                 ),
               ],
             ),
@@ -68,13 +69,15 @@ class RecipeCard extends StatelessWidget {
               // creating a Stack object:
               Stack(
                 children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 16.0 / 9.0,
-                    child: Image.network(
-                      recipe.imageURL,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  recipe.imageURL != null
+                      ? AspectRatio(
+                          aspectRatio: 16.0 / 9.0,
+                          child: Image.network(
+                            recipe.imageURL,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : Text('HERE'),
                   Positioned(
                     child: _buildFavoriteButton(),
                     top: 2.0,

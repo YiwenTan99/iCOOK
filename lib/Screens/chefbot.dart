@@ -3,7 +3,6 @@ import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iCOOK/components/bottomnavi.dart';
 
-
 class ChefBot extends StatefulWidget {
   ChefBot({Key key, this.title}) : super(key: key);
 
@@ -35,7 +34,10 @@ class _ChefBot extends State<ChefBot> {
             new Container(
               margin: new EdgeInsets.symmetric(horizontal: 4.0),
               child: new IconButton(
-                  icon: new Icon(Icons.send, color: Colors.lightGreenAccent,),
+                  icon: new Icon(
+                    Icons.send,
+                    color: Colors.lightGreenAccent,
+                  ),
                   onPressed: () => _handleSubmitted(_textController.text)),
             ),
           ],
@@ -87,14 +89,14 @@ class _ChefBot extends State<ChefBot> {
           onPressed: () {
             Navigator.push(
               context,
-                MaterialPageRoute(
-                  builder: (context){
-                   return BottomNavi();
-                  },
-                ),
-              );
-            },
-         ),
+              MaterialPageRoute(
+                builder: (context) {
+                  return BottomNavi();
+                },
+              ),
+            );
+          },
+        ),
         title: Text(
           'ChefBot',
           style: GoogleFonts.specialElite(
@@ -168,8 +170,8 @@ class ChatMessage extends StatelessWidget {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            new Text(this.name, 
-              style: new TextStyle(fontWeight: FontWeight.bold)),
+            new Text(this.name,
+                style: new TextStyle(fontWeight: FontWeight.bold)),
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: new Text(text),
@@ -178,18 +180,18 @@ class ChatMessage extends StatelessWidget {
         ),
       ),
       new Container(
-        margin: const EdgeInsets.only(left: 16.0),
-        child: new CircleAvatar(
-          backgroundColor: Colors.lightGreenAccent[100],
-          child: new Text(
-          this.name[0],
-          style: new TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: Colors.black,
-          ),
-          ),
-        )),
+          margin: const EdgeInsets.only(left: 16.0),
+          child: new CircleAvatar(
+            backgroundColor: Colors.lightGreenAccent[100],
+            child: new Text(
+              this.name[0],
+              style: new TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
+            ),
+          )),
     ];
   }
 

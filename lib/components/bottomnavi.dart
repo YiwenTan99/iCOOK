@@ -9,7 +9,6 @@ class MyBottomNavigationBar extends StatefulWidget {
   _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
 
-
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _currentIndex = 3;
   final List<Widget> _children = [
@@ -19,16 +18,16 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     UpdateScreen(),
   ];
 
-  void onTappedBar(int index){
-    setState((){
-      _currentIndex =index;
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:_children[_currentIndex],
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTappedBar,
         currentIndex: _currentIndex,
@@ -67,7 +66,7 @@ class BottomNavi extends StatefulWidget {
 }
 
 class _BottomNaviState extends State<BottomNavi> {
- int _currentIndex = 2;
+  int _currentIndex = 2;
 
   final List<Widget> _children = [
     ScanScreen(),
@@ -76,16 +75,16 @@ class _BottomNaviState extends State<BottomNavi> {
     UpdateScreen(),
   ];
 
-  void onTappedBar(int index){
-    setState((){
-      _currentIndex =index;
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:_children[_currentIndex],
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTappedBar,
         currentIndex: _currentIndex,
@@ -124,7 +123,7 @@ class BottomNavi1 extends StatefulWidget {
 }
 
 class _BottomNavi1State extends State<BottomNavi1> {
- int _currentIndex = 1;
+  int _currentIndex = 1;
 
   final List<Widget> _children = [
     ScanScreen(),
@@ -133,16 +132,16 @@ class _BottomNavi1State extends State<BottomNavi1> {
     UpdateScreen(),
   ];
 
-  void onTappedBar(int index){
-    setState((){
-      _currentIndex =index;
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:_children[_currentIndex],
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTappedBar,
         currentIndex: _currentIndex,
@@ -174,5 +173,3 @@ class _BottomNavi1State extends State<BottomNavi1> {
     );
   }
 }
-
-
