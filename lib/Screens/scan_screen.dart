@@ -3,6 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
+import 'package:iCOOK/Screens/Apple.dart' as Apple;
+import 'package:iCOOK/Screens/BellPepper.dart' as BellPepper;
+import 'package:iCOOK/Screens/Broccoli.dart' as Broccoli;
+import 'package:iCOOK/Screens/Carrot.dart' as Carrot ;
+import 'package:iCOOK/Screens/Grape.dart' as Grape;
+import 'package:iCOOK/Screens/Mushroom.dart' as Mushroom;
+import 'package:iCOOK/Screens/Orange.dart' as Orange;
+import 'package:iCOOK/Screens/WhiteP.dart' as WhiteP;
+import 'package:iCOOK/Screens/Pumpkin.dart' as Pumpkin;
+import 'package:iCOOK/Screens/Strawberry.dart' as Strawberry;
+import 'package:iCOOK/Screens/RedSnapper.dart' as RedSnapper;
+import 'package:iCOOK/Screens/Stingray.dart' as Stingray;
+import 'package:iCOOK/Screens/Tomato.dart' as Tomato;
+import 'package:iCOOK/Screens/TorpedoS.dart' as TorpedoS;
+import 'package:iCOOK/Screens/YellowT.dart' as YellowT;
+
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -26,10 +42,29 @@ class _ScanScreenState extends State<ScanScreen> {
     });
   }
 
+  Future<bool> _onBackPressed(){
+    return showDialog(
+      context: context,
+      builder: (context)=>AlertDialog(
+        title: Text("Do you really want to exit the app?"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,false),
+          ),
+          FlatButton(
+            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
+            onPressed: ()=>Navigator.pop(context,true),
+          )
+        ],
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-          onWillPop: () async => false,
+          onWillPop: _onBackPressed,
           child: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
@@ -63,7 +98,7 @@ class _ScanScreenState extends State<ScanScreen> {
                           child: Column(
                             children: <Widget>[
                                 SizedBox(
-                                  height: 130,
+                                  height: 110,
                                 ),
                                 Text(
                                   "Tap on the right bottom image icon to access the scan feature",
@@ -78,7 +113,7 @@ class _ScanScreenState extends State<ScanScreen> {
                                     child: Image(
                                       image: AssetImage("assets/images/arrow.png"),
                                         width: 230,
-                                        height: 300,
+                                        height: 200,
                                       ),
                                     ),
                                   ] 
@@ -102,22 +137,118 @@ class _ScanScreenState extends State<ScanScreen> {
                               SizedBox(
                                 height: 30,
                               ),
-                              RaisedButton(
-                                color: Colors.lightGreen[50],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                ),
-                                onPressed: () {},
-                                child: Text(
-                                  "Suggested Recipe",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: Colors.grey[800], 
+                                RaisedButton(
+                                  color: Colors.lightGreen[50],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
                                   ),
+                                  // onPressed: () {
+                                  child:
+                                  Text(
+                                    "Suggested Recipe",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Colors.grey[800],
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    if(_outputs[0]["label"] == "Apple") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) {
+                                              return Apple.Apple();
+                                            }
+                                        ),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Bell Pepper") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => BellPepper.BellPepper()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Broccoli") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Broccoli.Broccoli()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Carrot") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Carrot.Carrot()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Grape") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Grape.Grape()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Mushroom") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Mushroom.Mushroom()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Orange") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Orange.Orange()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "White Pomfret") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => WhiteP.WhiteP()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Pumpkin") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Pumpkin.Pumpkin()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Red Snapper") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => RedSnapper.RedSnapper()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Stingray") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Stingray.Stingray()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Strawberry") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Strawberry.Strawberry()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Tomato") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Tomato.Tomato()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Torpedo Scad") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => TorpedoS.TorpedoS()),
+                                      );
+                                    }
+                                    else if(_outputs[0]["label"] == "Yellowtail Scad") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => YellowT.YellowT()),
+                                      );
+                                    }
+                                  },
                                 ),
-                              
-                              ),
                             ],
                           )
                           : Container(
@@ -140,12 +271,8 @@ class _ScanScreenState extends State<ScanScreen> {
             child: FloatingActionButton(onPressed: (){
           _showChoiceDialog(context);
         },
-          child: Icon(
-            Icons.image,
-            color: Colors.lightGreen[50],
-            size:25.0,
-          ),
-          backgroundColor: Colors.red[200]),
+          child: Icon(Icons.image),
+          backgroundColor: Colors.lime,),
           ),
         ),
 
