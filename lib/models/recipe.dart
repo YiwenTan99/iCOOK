@@ -1,12 +1,10 @@
-import 'package:duration/duration.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 enum RecipeType {
   food,
 }
 
 class Recipe {
   final int id;
+
   final String name;
   final String category;
   final String duration;

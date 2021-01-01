@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/utils/store.dart';
 
 class DetailScreen extends StatefulWidget {
   final Recipe recipe;
@@ -36,7 +37,7 @@ class _DetailScreenState extends State<DetailScreen>
     super.dispose();
   }
 
-  // ignore: unused_element
+  //ignore: unused_element
   void _toggleInFavorites() {
     setState(() {
       _inFavorites = !_inFavorites;
@@ -71,7 +72,7 @@ class _DetailScreenState extends State<DetailScreen>
               forceElevated: innerViewIsScrolled,
               bottom: TabBar(
                 tabs: <Widget>[
-                  Tab(text: "Home"),
+                  Tab(text: "Ingredients"),
                   Tab(text: "Preparation"),
                 ],
                 controller: _tabController,
@@ -87,20 +88,20 @@ class _DetailScreenState extends State<DetailScreen>
           controller: _tabController,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // updateFavorites(appState.user.uid, widget.recipe.id).then((result) {
-          //   // Toggle "in favorites" if the result was successful.
-          //   if (result) _toggleInFavorites();
-          // });
-        },
-        child: Icon(
-          _inFavorites ? Icons.favorite : Icons.favorite_border,
-          color: Theme.of(context).iconTheme.color,
-        ),
-        elevation: 2.0,
-        backgroundColor: Colors.white,
-      ),
+      //floatingActionButton: FloatingActionButton(
+      //onPressed: () {
+      //updateFavorites(user.uid, widget.recipe.id).then((result) {
+      //Toggle "in favoriteappStates" if the result was successful.
+      //if (result) _toggleInFavorites();
+      //});
+      //},
+      //child: Icon(
+      //_inFavorites ? Icons.favorite : Icons.favorite_border,
+      //color: Theme.of(context).iconTheme.color,
+      //),
+      //elevation: 2.0,
+      //backgroundColor: Colors.white,
+      // ),
     );
   }
 }

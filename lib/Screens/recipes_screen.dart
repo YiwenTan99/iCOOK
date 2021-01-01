@@ -21,6 +21,18 @@ class RecipesScreenState extends State<RecipesScreen> {
   var user;
   bool loading = false;
 
+  Future<List<String>> getFavorites() async {
+    DocumentSnapshot querySnapshot =
+        await Firestore.instance.collection('recipe').document(user.uid).get();
+    if (querySnapshot.exists &&
+        querySnapshot.data.containsKey('favorites') &&
+        querySnapshot.data['favorites'] is List) {
+      // Create a new List<String> from List<dynamic>
+      return List<String>.from(querySnapshot.data['favorites']);
+    }
+    return [];
+  }
+
   DefaultTabController _buildTabView({Widget body}) {
     const double _iconSize = 20.0;
 
