@@ -37,7 +37,6 @@ class Gender {
 }
 
 class _UpdateScreenState extends State<UpdateScreen> {
-  
   final _formKey = GlobalKey<FormState>();
   final List<String> gender = ['male', 'female'];
   // ignore: unused_field
@@ -114,9 +113,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
         stream: Firestore.instance.collection('Users').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
-            _username.text = snapshot.data.documents[5].data['Username'];
+            _username.text = snapshot.data.documents[0].data['Username'];
             if (ontapSelected == false) {
-              _selectedGender = snapshot.data.documents[5]['Gender'] == 'male'
+              _selectedGender = snapshot.data.documents[0]['Gender'] == 'male'
                   ? _dropdownMenuItems[0].value
                   : _dropdownMenuItems[1].value;
             }
@@ -132,83 +131,83 @@ class _UpdateScreenState extends State<UpdateScreen> {
             //     Text(snapshot.data.documents[0]['Usename']),
             //   ],
             // );
-          return WillPopScope(
-            onWillPop: () async => false,
-            child: Form(
-              key: _formKey,
-              child: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.lightGreen,
-                  title: Text(
-                    'iCOOK - Profile',
-                    style: GoogleFonts.specialElite(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Colors.black,
+            return WillPopScope(
+              onWillPop: () async => false,
+              child: Form(
+                key: _formKey,
+                child: Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.lightGreen,
+                    title: Text(
+                      'iCOOK - Profile',
+                      style: GoogleFonts.specialElite(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.black,
+                      ),
                     ),
+                    centerTitle: true,
+                    automaticallyImplyLeading: false,
                   ),
-                  centerTitle: true,
-                  automaticallyImplyLeading: false,
-                ),
-                body: Container(
-                  padding: EdgeInsets.only(left: 16, top: 25, right: 16),
-                  child: GestureDetector(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: ListView(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
+                  body: Container(
+                    padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: ListView(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
 
-                        // BuildTextField(
-                        //   controller: _username,
-                        //   validator: (_name) =>
-                        //       _name.isEmpty ? 'Enter a name' : null,
-                        //   hintText: "Username",
-                        //   icon: Icons.person,
-                        //   onChanged: (_name) {
-                        //     setState(() {
-                        //       _username.text = _name;
-                        //     });
-                        //   },
-                        // ),
-                       Text(
-                          "Name",
+                          // BuildTextField(
+                          //   controller: _username,
+                          //   validator: (_name) =>
+                          //       _name.isEmpty ? 'Enter a name' : null,
+                          //   hintText: "Username",
+                          //   icon: Icons.person,
+                          //   onChanged: (_name) {
+                          //     setState(() {
+                          //       _username.text = _name;
+                          //     });
+                          //   },
+                          // ),
+                          Text(
+                            "Name",
                             style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        TextFormField(
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          controller: _username,
-                          textCapitalization: TextCapitalization.none,
-                          keyboardType: TextInputType.text,
-                          focusNode: FocusNode(),
-                          validator: (username) {
-                            if (username == '') {
-                              return 'username invalid';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'Username',
-                            hintStyle: TextStyle(
+                              fontSize: 18,
                               color: Colors.black54,
                             ),
-                            filled: false,
                           ),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        //pass value
-                        /*RoundedInputField(
+                          TextFormField(
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            controller: _username,
+                            textCapitalization: TextCapitalization.none,
+                            keyboardType: TextInputType.text,
+                            focusNode: FocusNode(),
+                            validator: (username) {
+                              if (username == '') {
+                                return 'username invalid';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'Username',
+                              hintStyle: TextStyle(
+                                color: Colors.black54,
+                              ),
+                              filled: false,
+                            ),
+                            textInputAction: TextInputAction.next,
+                          ),
+                          //pass value
+                          /*RoundedInputField(
                           validator: (_email) => _email.isEmpty
                               ? 'Enter an email'
                               : !_email.contains("@")
@@ -234,110 +233,111 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             });
                           },
                         ),*/
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Gender",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black54,
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        DropdownButton(
-                          value: _selectedGender,
-                          items: _dropdownMenuItems,
-                          onChanged: onChangeDropdownItem,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                          Text(
+                            "Gender",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black54,
+                            ),
                           ),
-                          onTap: () {
-                            ontapSelected = true;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Birthday",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black54,
+                          DropdownButton(
+                            value: _selectedGender,
+                            items: _dropdownMenuItems,
+                            onChanged: onChangeDropdownItem,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            onTap: () {
+                              ontapSelected = true;
+                            },
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        // selectedDate != null
-                        //     ? Text("${selectedDate.toLocal()}".split(' ')[0])
-                        //     :
-                        Text(snapshot.data.documents[5]['Birthday Date']
-                            .toString(),
-                          style: TextStyle(  
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),   
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        RaisedButton(
-                          onPressed: () => _currentDate(context),
-                          child: Text('Select date'),
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        // ignore: missing_required_param
-                        RoundedButton(
-                            textColor: Colors.white,
-                            color: Colors.red[200],
-                            text: "EDIT",
-                            press: () async {
-                              if (_formKey.currentState.validate()) {
-                                dynamic result =
-                                    await DatabaseService(uid: user.uid)
-                                        .updateUserData(
-                                            usernameToDb: _username.text,
-                                            dateToDb: selectedDate.toString(),
-                                            genderToDb: _selectedGender.name);
-                                if (result == null) {
-                                  setState(() {
-                                    error = 'please supply a valid email';
-                                  });
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Birthday",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // selectedDate != null
+                          //     ? Text("${selectedDate.toLocal()}".split(' ')[0])
+                          //     :
+                          Text(
+                            snapshot.data.documents[0]['Birthday Date']
+                                .toString(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          RaisedButton(
+                            onPressed: () => _currentDate(context),
+                            child: Text('Select date'),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          // ignore: missing_required_param
+                          RoundedButton(
+                              textColor: Colors.white,
+                              color: Colors.red[200],
+                              text: "EDIT",
+                              press: () async {
+                                if (_formKey.currentState.validate()) {
+                                  dynamic result =
+                                      await DatabaseService(uid: user.uid)
+                                          .updateUserData(
+                                              usernameToDb: _username.text,
+                                              dateToDb: selectedDate.toString(),
+                                              genderToDb: _selectedGender.name);
+                                  if (result == null) {
+                                    setState(() {
+                                      error = 'please supply a valid email';
+                                    });
+                                  }
                                 }
-                              }
-                            }),
-                        /*print(_currentUserName);
+                              }),
+                          /*print(_currentUserName);
                             print(_currentEmail);
                             print(_currentGender);
                             print(_currentDate);
                           },*/
 
-                        // ignore: missing_required_param
-                        OutButton(
-                          text: "LOG OUT",
-                          textColor: Colors.redAccent,
-                          color: Colors.red[200],
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return WelcomeScreen();
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                          // ignore: missing_required_param
+                          OutButton(
+                            text: "LOG OUT",
+                            textColor: Colors.redAccent,
+                            color: Colors.red[200],
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return WelcomeScreen();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                /*bottomNavigationBar: BottomNavigationBar(
+                  /*bottomNavigationBar: BottomNavigationBar(
                   currentIndex: _currentIndex,
                   iconSize: 30,
                   selectedFontSize: 15,
@@ -369,8 +369,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     });
                   },
                 ),*/
+                ),
               ),
-              ),  
             );
           } else {
             return Center(
@@ -403,23 +403,22 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future<void> _currentDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101),
-        
-        builder: (BuildContext context, Widget child) {
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+      builder: (BuildContext context, Widget child) {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.light().copyWith(
               primary: Colors.lightGreen,
-            ),//Background color
+            ), //Background color
           ),
           child: child,
         );
       },
     );
-        
+
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;

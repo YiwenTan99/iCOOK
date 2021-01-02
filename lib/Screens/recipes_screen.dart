@@ -92,7 +92,7 @@ class RecipesScreenState extends State<RecipesScreen> {
     );
   }
 
-  TabBarView _buildTabsContent() {
+  /*TabBarView _buildTabsContent() {
     Padding _buildRecipes({RecipeType recipeType, List<String> ids}) {
       CollectionReference collectionReference =
           Firestore.instance.collection('recipe');
@@ -141,6 +141,54 @@ class RecipesScreenState extends State<RecipesScreen> {
                       }).toList(),
                     );
                   }
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    }*/
+
+  TabBarView _buildTabsContent() {
+    Padding _buildRecipes({RecipeType recipeType, List<String> ids}) {
+      CollectionReference collectionReference =
+          Firestore.instance.collection('recipe');
+      Stream<QuerySnapshot> stream;
+      // The argument recipeType is set
+      if (recipeType != null) {
+        stream = collectionReference
+            .where("type", isEqualTo: recipeType.index)
+            .snapshots();
+      } else {
+        // Use snapshots of all recipes if recipeType has not been passed
+        stream = collectionReference.snapshots();
+      }
+
+      // Define query depeneding on passed args
+      return Padding(
+        // Padding before and after the list view:
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: new StreamBuilder(
+                stream: stream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) return _buildLoadingIndicator();
+                  return new ListView(
+                    children: snapshot.data.documents
+                        // Check if the argument ids contains document ID if ids has been passed:
+                        .where((d) => ids == null || ids.contains(d.documentID))
+                        .map((document) {
+                      return new RecipeCard(
+                        recipe:
+                            Recipe.fromMap(document.data, document.documentID),
+                        inFavorites: favorites.contains(document.documentID),
+                        onFavoriteButtonPressed: _handleFavoritesListChanged,
+                      );
+                    }).toList(),
+                  );
                 },
               ),
             ),

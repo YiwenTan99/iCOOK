@@ -20,12 +20,20 @@ class _SignupScreenState extends State<SignupScreen> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-
+  List<String> gender = ["Male", "Female"];
   // text field state
-  String email = '';
-  String password = '';
-  String name = '';
+  String name;
+  //String _gender = "";
+  String email;
+  String password;
+  DateTime date;
   String error = '';
+
+  // void chooseGender(String value) {
+  // setState(() {
+  //_gender = value;
+  //});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       SizedBox(
                         height: 60,
                       ),
+
                       RoundedInputField(
                         validator: (_name) =>
                             _name.isEmpty ? 'Enter a name' : null,
@@ -113,7 +122,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       SizedBox(
                         height: 0.1,
                       ),
+
                       // ignore: missing_required_param
+
                       RoundedButton(
                         text: "SIGN UP",
                         press: () async {
@@ -121,7 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             setState(() => loading = true);
                             dynamic result =
                                 await _auth.registerWithEmailAndPassword(
-                                    email, password, name);
+                                    email, password, name, gender.toString());
                             if (result == null) {
                               setState(() {
                                 error = 'please supply a valid email';
@@ -141,6 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         textColor: Colors.redAccent,
                         color: kPrimaryLightColor,
+                        size: null,
                       ),
                       AlreadyHaveAnAccountCheck(
                         login: false,

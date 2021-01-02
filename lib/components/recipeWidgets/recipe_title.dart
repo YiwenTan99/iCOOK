@@ -28,7 +28,7 @@ class RecipeTitle extends StatelessWidget {
               Icon(Icons.timer, size: 20.0),
               SizedBox(width: 5.0),
               Text(
-                recipe.duration.toString() + "minutes",
+                recipe.duration.toString(),
                 style: Theme.of(context).textTheme.caption,
               ),
             ],
