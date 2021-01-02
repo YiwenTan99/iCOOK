@@ -42,29 +42,12 @@ class _ScanScreenState extends State<ScanScreen> {
     });
   }
 
-  Future<bool> _onBackPressed(){
-    return showDialog(
-      context: context,
-      builder: (context)=>AlertDialog(
-        title: Text("Do you really want to exit the app?"),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("No",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,false),
-          ),
-          FlatButton(
-            child: Text("Yes",style: TextStyle(color: Colors.lightGreen)),
-            onPressed: ()=>Navigator.pop(context,true),
-          )
-        ],
-      )
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-          onWillPop: _onBackPressed,
+          onWillPop: () async => false,
           child: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
@@ -97,25 +80,24 @@ class _ScanScreenState extends State<ScanScreen> {
                         padding: EdgeInsets.all(20.0),
                           child: Column(
                             children: <Widget>[
-                                SizedBox(
-                                  height: 110,
-                                ),
-                                Text(
-                                  "Tap on the right bottom image icon to access the scan feature",
-                                    style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey[800]
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Image(
-                                      image: AssetImage("assets/images/arrow.png"),
-                                        width: 230,
-                                        height: 200,
-                                      ),
-                                    ),
+                                
+                                // Text(
+                                //   "Tap on the right bottom image icon to access the scan feature",
+                                //     style: TextStyle(
+                                //       fontSize: 30.0,
+                                //       fontWeight: FontWeight.w400,
+                                //       color: Colors.grey[800]
+                                //     ),
+                                //   ),
+                                Image(image: AssetImage("assets/images/scan.png")),
+                                  // Align(
+                                  //   alignment: Alignment.bottomLeft,
+                                  //   child: Image(
+                                  //     image: AssetImage("assets/images/arrow.png"),
+                                  //       width: 230,
+                                  //       height: 200,
+                                  //     ),
+                                  //   ),
                                   ] 
                                 ),
                               ),

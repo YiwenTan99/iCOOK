@@ -39,6 +39,7 @@ class RecipesScreenState extends State<RecipesScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
           backgroundColor: Colors.lightGreen,
           title: Text(

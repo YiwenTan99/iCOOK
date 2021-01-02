@@ -49,6 +49,7 @@ class _DetailScreenState extends State<DetailScreen>
     //appState = StateWidget.of(context).state;
 
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5),
       body: NestedScrollView(
         controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerViewIsScrolled) {
@@ -65,12 +66,15 @@ class _DetailScreenState extends State<DetailScreen>
                   ],
                 ),
               ),
-              expandedHeight: 340.0,
+              expandedHeight: 320.0,
               pinned: true,
               floating: true,
               elevation: 2.0,
               forceElevated: innerViewIsScrolled,
               bottom: TabBar(
+                unselectedLabelColor: Color(0xFFCCC5AF),
+                indicatorColor: Color(0xFF807A6B),
+                labelColor: Color(0xFF807A6B),
                 tabs: <Widget>[
                   Tab(text: "Ingredients"),
                   Tab(text: "Preparation"),
@@ -88,20 +92,20 @@ class _DetailScreenState extends State<DetailScreen>
           controller: _tabController,
         ),
       ),
-      //floatingActionButton: FloatingActionButton(
-      //onPressed: () {
-      //updateFavorites(user.uid, widget.recipe.id).then((result) {
-      //Toggle "in favoriteappStates" if the result was successful.
-      //if (result) _toggleInFavorites();
-      //});
-      //},
-      //child: Icon(
-      //_inFavorites ? Icons.favorite : Icons.favorite_border,
-      //color: Theme.of(context).iconTheme.color,
-      //),
-      //elevation: 2.0,
-      //backgroundColor: Colors.white,
-      // ),
+       floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // updateFavorites(appState.user.uid, widget.recipe.id).then((result) {
+          //   // Toggle "in favorites" if the result was successful.
+          //   if (result) _toggleInFavorites();
+          // });
+        },
+        child: Icon(
+          _inFavorites ? Icons.favorite : Icons.favorite_border,
+          color: Colors.red[200],
+        ),
+        elevation: 2.0,
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }
@@ -119,7 +123,7 @@ class IngredientsView extends StatelessWidget {
       children.add(
         new Row(
           children: <Widget>[
-            new Icon(Icons.done),
+            new Icon(Icons.done,color: Color(0xFFCCC5AF)),
             new SizedBox(width: 5.0),
             new Text(item),
           ],

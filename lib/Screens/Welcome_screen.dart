@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/main.jpg"),
+            image: AssetImage("assets/images/background.png"),
             alignment: Alignment.topCenter,
             fit: BoxFit.cover,
           ),
@@ -67,7 +67,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 ),
               ),
             ),
-            SizedBox(height: 220.0),
+            Image.asset(
+              'assets/images/mainLogo.png',
+              width: 200,
+            ),
+             
              SlideTransition(
               position: Tween<Offset>(
                 begin: Offset(1,0),
@@ -79,14 +83,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   child: Text(
                     'Cook With Love',
                     style: GoogleFonts.lobster(
+                      
                       fontSize: 30,
-                      color: Colors.redAccent,
+                      color: Colors.red[300],
                     ),
                   ),
                 ),
             ),
              ),
-             SizedBox(height: 100.0),
+             SizedBox(height: 80.0),
             // ignore: missing_required_param
             RoundedButton(
               text: "SIGN UP",

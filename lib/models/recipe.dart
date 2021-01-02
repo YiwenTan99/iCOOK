@@ -24,6 +24,8 @@ class Recipe {
     this.preparation,
     this.imageURL,
   });
+  
+  String get getDurationString => prettyDuration(this.duration);
 
   Recipe.fromMap(Map<String, dynamic> data, String id)
       : this(
