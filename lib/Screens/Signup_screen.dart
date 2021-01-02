@@ -132,7 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             setState(() => loading = true);
                             dynamic result =
                                 await _auth.registerWithEmailAndPassword(
-                                    email, password, name, gender.toString());
+                                    email, password, name);
                             if (result == null) {
                               setState(() {
                                 error = 'please supply a valid email';
