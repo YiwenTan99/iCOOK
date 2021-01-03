@@ -92,20 +92,20 @@ class _DetailScreenState extends State<DetailScreen>
           controller: _tabController,
         ),
       ),
-       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // updateFavorites(appState.user.uid, widget.recipe.id).then((result) {
-          //   // Toggle "in favorites" if the result was successful.
-          //   if (result) _toggleInFavorites();
-          // });
-        },
-        child: Icon(
-          _inFavorites ? Icons.favorite : Icons.favorite_border,
-          color: Colors.red[200],
-        ),
-        elevation: 2.0,
-        backgroundColor: Colors.white,
-      ),
+      //  floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // updateFavorites(appState.user.uid, widget.recipe.id).then((result) {
+      //     //   // Toggle "in favorites" if the result was successful.
+      //     //   if (result) _toggleInFavorites();
+      //     // });
+      //   },
+      //   child: Icon(
+      //     _inFavorites ? Icons.favorite : Icons.favorite_border,
+      //     color: Colors.red[200],
+      //   ),
+      //   elevation: 2.0,
+      //   backgroundColor: Colors.white,
+      // ),
     );
   }
 }
