@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/models/user.dart';
 import 'package:iCOOK/utils/store.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final Recipe recipe;
@@ -16,6 +18,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen>
     with SingleTickerProviderStateMixin {
+  var user;
   TabController _tabController;
   ScrollController _scrollController;
   bool _inFavorites;
@@ -46,6 +49,7 @@ class _DetailScreenState extends State<DetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    user = Provider.of<User>(context);
     //appState = StateWidget.of(context).state;
 
     return Scaffold(
@@ -88,20 +92,20 @@ class _DetailScreenState extends State<DetailScreen>
           controller: _tabController,
         ),
       ),
-      //floatingActionButton: FloatingActionButton(
-      //onPressed: () {
-      //updateFavorites(user.uid, widget.recipe.id).then((result) {
-      //Toggle "in favoriteappStates" if the result was successful.
-      //if (result) _toggleInFavorites();
-      //});
-      //},
-      //child: Icon(
-      //_inFavorites ? Icons.favorite : Icons.favorite_border,
-      //color: Theme.of(context).iconTheme.color,
-      //),
-      //elevation: 2.0,
-      //backgroundColor: Colors.white,
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          updateFavorites(user.uid, widget.recipe.id).then((result) {
+            //Toggle "in favoriteappStates" if the result was successful.
+            if (result) _toggleInFavorites();
+          });
+        },
+        child: Icon(
+          _inFavorites ? Icons.favorite : Icons.favorite_border,
+          color: Theme.of(context).iconTheme.color,
+        ),
+        elevation: 2.0,
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }
@@ -121,7 +125,10 @@ class IngredientsView extends StatelessWidget {
           children: <Widget>[
             new Icon(Icons.done),
             new SizedBox(width: 5.0),
-            new Text(item),
+            Flexible(
+              fit: FlexFit.loose,
+              child: new Text(item),
+            ),
           ],
         ),
       );

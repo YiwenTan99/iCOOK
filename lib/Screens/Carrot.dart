@@ -22,7 +22,6 @@ class _CarrotState extends State<Carrot> {
   bool pumpkin = true;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
@@ -33,7 +32,7 @@ class _CarrotState extends State<Carrot> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context){
+                builder: (context) {
                   return BottomNavi1();
                 },
               ),

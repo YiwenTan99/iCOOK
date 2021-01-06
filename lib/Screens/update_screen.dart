@@ -43,7 +43,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   int _currentIndex = 2;
   List<Gender> _genders = Gender.getGenders();
   List<DropdownMenuItem<Gender>> _dropdownMenuItems;
-  Gender _selectedGender;
+  Gender _currentGender;
   String select;
   DateTime selectedDate = DateTime.now();
   final _username = TextEditingController();
@@ -51,7 +51,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   @override
   void initState() {
     _dropdownMenuItems = buildDropdownMenuItems(_genders);
-    _selectedGender = _dropdownMenuItems[0].value;
+    _currentGender = _dropdownMenuItems[0].value;
     super.initState();
   }
 
@@ -71,14 +71,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   onChangeDropdownItem(Gender selectedGender) {
     setState(() {
-      _selectedGender = selectedGender;
+      _currentGender = selectedGender;
       // _selectedGender = _selectedGender.name == 'male'
       //     ? _dropdownMenuItems[0].value
       //     : _dropdownMenuItems[1].value;
     });
-    print(_selectedGender.name);
+    print(_currentGender.name);
   }
 
+  String _currentUsername;
+  String _currentDate;
   @override
   Widget build(BuildContext context) {
     /*return SingleChildScrollView(
@@ -107,30 +109,31 @@ class _UpdateScreenState extends State<UpdateScreen> {
     return StreamProvider<List<InfoUser>>.value(
       value: DatabaseService().users,*/
     // yang ini sebelum ni
-    final user = Provider.of<User>(context);
 
-    return StreamBuilder<QuerySnapshot>(
+    /*return StreamBuilder<InfoUser>(
+        stream: DatabaseService(uid: user.uid).infoUser,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            InfoUser infoUser = snapshot.data;*/
+
+    /*return StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance.collection('Users').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.hasData) {
             _username.text = snapshot.data.documents[0].data['Username'];
             if (ontapSelected == false) {
               _selectedGender = snapshot.data.documents[0]['Gender'] == 'male'
                   ? _dropdownMenuItems[0].value
                   : _dropdownMenuItems[1].value;
-            }
-            // print(snapshot.data.documents[5]['Gender']);
-            // String username = snapshot.data.documents[5]['Username'];
-            // print(_username.text = snapshot.data.documents[5]['Username']);
-            //return Text('Loading data.. Please Wait..');
-            //print(snapshot.data.documents[0]['Usename']);
-            // return Column(
-            //   children: <Widget>[
-            //     Text(snapshot.data.documents[0]['Birthday Date'].toString()),
-            //     Text(snapshot.data.documents[0]['Gender'].toString()),
-            //     Text(snapshot.data.documents[0]['Usename']),
-            //   ],
-            // );
+            }*/
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user.uid).userData,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            UserData userData = snapshot.data;
+
             return WillPopScope(
               onWillPop: () async => false,
               child: Form(
@@ -161,18 +164,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             height: 10,
                           ),
 
-                          // BuildTextField(
-                          //   controller: _username,
-                          //   validator: (_name) =>
-                          //       _name.isEmpty ? 'Enter a name' : null,
-                          //   hintText: "Username",
-                          //   icon: Icons.person,
-                          //   onChanged: (_name) {
-                          //     setState(() {
-                          //       _username.text = _name;
-                          //     });
-                          //   },
-                          // ),
                           Text(
                             "Name",
                             style: TextStyle(
@@ -186,17 +177,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
+                            //initialValue: userData.username,
                             controller: _username,
                             textCapitalization: TextCapitalization.none,
                             keyboardType: TextInputType.text,
                             focusNode: FocusNode(),
-                            validator: (username) {
-                              if (username == '') {
-                                return 'username invalid';
-                              } else {
-                                return null;
-                              }
-                            },
+                            validator: (val) => val.isEmpty ? 'Username' : null,
+                            onChanged: (val) =>
+                                setState(() => _currentUsername = val),
                             decoration: InputDecoration(
                               hintText: 'Username',
                               hintStyle: TextStyle(
@@ -206,33 +194,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             ),
                             textInputAction: TextInputAction.next,
                           ),
-                          //pass value
-                          /*RoundedInputField(
-                          validator: (_email) => _email.isEmpty
-                              ? 'Enter an email'
-                              : !_email.contains("@")
-                                  ? "enter a valid email"
-                                  : null,
-                          hintText: "Email",
-                          icon: Icons.mail,
-                          onChanged: (_email) {
-                            setState(() {
-                              email = _email;
-                            });
-                          },
-                        ),
-                        RoundedPasswordField(
-                          validator: (_password) => _password.length < 6
-                              ? 'Enter a password minimum 6 character'
-                              : null,
-                          hintText: "Password",
-                          icon: Icons.mail,
-                          onChanged: (_password) {
-                            setState(() {
-                              password = _password;
-                            });
-                          },
-                        ),*/
                           SizedBox(
                             height: 20,
                           ),
@@ -244,9 +205,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             ),
                           ),
                           DropdownButton(
-                            value: _selectedGender,
+                            value: _currentGender ?? userData.gender,
                             items: _dropdownMenuItems,
-                            onChanged: onChangeDropdownItem,
+                            onChanged: (val) =>
+                                setState(() => _currentGender = val),
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -272,20 +234,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           // selectedDate != null
                           //     ? Text("${selectedDate.toLocal()}".split(' ')[0])
                           //     :
-                          Text(
-                            snapshot.data.documents[0]['Birthday Date']
-                                .toString(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
                           SizedBox(
                             height: 5.0,
                           ),
                           RaisedButton(
-                            onPressed: () => _currentDate(context),
+                            onPressed: () => _selectDate(context),
                             child: Text('Select date'),
                           ),
                           SizedBox(
@@ -298,24 +251,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
                               text: "EDIT",
                               press: () async {
                                 if (_formKey.currentState.validate()) {
-                                  dynamic result =
-                                      await DatabaseService(uid: user.uid)
-                                          .updateUserData(
-                                              usernameToDb: _username.text,
-                                              dateToDb: selectedDate.toString(),
-                                              genderToDb: _selectedGender.name);
-                                  if (result == null) {
-                                    setState(() {
-                                      error = 'please supply a valid email';
-                                    });
-                                  }
+                                  await DatabaseService(uid: user.uid)
+                                      .updateUserData(
+                                    gender: _currentGender.toString() ??
+                                        userData.gender,
+                                    username:
+                                        _currentUsername ?? userData.username,
+                                    date: _currentDate.toString() ??
+                                        userData.date,
+                                  );
+
+                                  Navigator.pop(context);
                                 }
                               }),
-                          /*print(_currentUserName);
-                            print(_currentEmail);
-                            print(_currentGender);
-                            print(_currentDate);
-                          },*/
 
                           // ignore: missing_required_param
                           OutButton(
@@ -401,11 +349,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
     );
   }*/
 
-  Future<void> _currentDate(BuildContext context) async {
+  Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(2015, 8),
+      firstDate: DateTime(1900, 8),
       lastDate: DateTime(2101),
       builder: (BuildContext context, Widget child) {
         return Theme(

@@ -21,18 +21,6 @@ class RecipesScreenState extends State<RecipesScreen> {
   var user;
   bool loading = false;
 
-  Future<List<String>> getFavorites() async {
-    DocumentSnapshot querySnapshot =
-        await Firestore.instance.collection('recipe').document(user.uid).get();
-    if (querySnapshot.exists &&
-        querySnapshot.data.containsKey('favorites') &&
-        querySnapshot.data['favorites'] is List) {
-      // Create a new List<String> from List<dynamic>
-      return List<String>.from(querySnapshot.data['favorites']);
-    }
-    return [];
-  }
-
   DefaultTabController _buildTabView({Widget body}) {
     const double _iconSize = 20.0;
 
@@ -150,6 +138,7 @@ class RecipesScreenState extends State<RecipesScreen> {
     }*/
 
   TabBarView _buildTabsContent() {
+    // amik sini
     Padding _buildRecipes({RecipeType recipeType, List<String> ids}) {
       CollectionReference collectionReference =
           Firestore.instance.collection('recipe');
@@ -201,7 +190,7 @@ class RecipesScreenState extends State<RecipesScreen> {
       children: [
         _buildRecipes(recipeType: RecipeType.food),
         _buildRecipes(ids: favorites),
-        // Center(child: Icon(Icons.settings)),
+        //Center(child: Icon(Icons.settings)),
       ],
     );
   }
@@ -211,14 +200,21 @@ class RecipesScreenState extends State<RecipesScreen> {
   void _handleFavoritesListChanged(String recipeID) {
     updateFavorites(user.uid, recipeID).then((result) {
       // Update the state:
-      if (result == true) {
-        setState(() {
-          if (!favorites.contains(recipeID))
-            favorites.add(recipeID);
-          else
-            favorites.remove(recipeID);
-        });
-      }
+      print(favorites);
+      setState(() {
+        if (!favorites.contains(recipeID))
+          favorites.add(recipeID);
+        else
+          favorites.remove(recipeID);
+      });
+      // if (result == true) {
+      //   setState(() {
+      //     if (!favorites.contains(recipeID))
+      //       favorites.add(recipeID);
+      //     else
+      //       favorites.remove(recipeID);
+      //   });
+      // }
     });
   }
 
@@ -228,6 +224,18 @@ class RecipesScreenState extends State<RecipesScreen> {
       loading = true;
     });
     super.initState();
+  }
+
+  Future<List<String>> getFavorites() async {
+    DocumentSnapshot querySnapshot =
+        await Firestore.instance.collection('recipe').document(user.uid).get();
+    if (querySnapshot.exists &&
+        querySnapshot.data.containsKey('favorites') &&
+        querySnapshot.data['favorites'] is List) {
+      // Create a new List<String> from List<dynamic>
+      return List<String>.from(querySnapshot.data['favorites']);
+    }
+    return [];
   }
 
   @override

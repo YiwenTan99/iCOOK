@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iCOOK/Screens/Apple/Apple.dart';
 import 'package:iCOOK/Screens/detail.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
@@ -16,7 +17,25 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RawMaterialButton _buildFavoriteButton() {
+    Widget _buildFavoriteButton() {
+      // if else
+      /*if (recipe.mainitem == 'Fish') {
+        return RawMaterialButton(
+          constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
+          onPressed: () => onFavoriteButtonPressed(recipe.id),
+          child: Icon(
+            // Conditional expression:
+            // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
+            inFavorites == true ? Icons.favorite : Icons.favorite_border,
+            color: Theme.of(context).iconTheme.color,
+          ),
+          elevation: 2.0,
+          fillColor: Theme.of(context).buttonColor,
+          shape: CircleBorder(),
+        );
+      } else {
+        return SizedBox();
+      }*/
       return RawMaterialButton(
         constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
         onPressed: () => onFavoriteButtonPressed(recipe.id),

@@ -13,17 +13,18 @@ class Recipe {
   final List<String> ingredients;
   final List<String> preparation;
   final String imageURL;
+  final String mainitem;
 
-  const Recipe({
-    this.id,
-    this.type,
-    this.name,
-    this.category,
-    this.duration,
-    this.ingredients,
-    this.preparation,
-    this.imageURL,
-  });
+  const Recipe(
+      {this.id,
+      this.type,
+      this.name,
+      this.category,
+      this.duration,
+      this.ingredients,
+      this.preparation,
+      this.imageURL,
+      this.mainitem});
 
   Recipe.fromMap(Map<String, dynamic> data, String id)
       : this(
@@ -33,6 +34,7 @@ class Recipe {
           ingredients: new List<String>.from(data['ingredients']),
           preparation: new List<String>.from(data['preparation']),
           imageURL: data['image'],
+          mainitem: data['main item'],
         );
 
   //String get getDurationString => prettyDuration(this.duration);

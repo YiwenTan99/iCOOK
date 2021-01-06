@@ -17,7 +17,7 @@ class RecipeTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            recipe.name,
+            recipe.name == null ? "" : recipe.name,
             // ignore: deprecated_member_use
             style: Theme.of(context).textTheme.title,
           ),

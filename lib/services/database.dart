@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:iCOOK/models/info_user.dart';
-//import 'package:iCOOK/models/user.dart';
+import 'package:iCOOK/models/user.dart';
+import 'package:iCOOK/models/user_info.dart';
 
 class DatabaseService {
   final String uid;
@@ -10,51 +10,48 @@ class DatabaseService {
   final CollectionReference usersCollection =
       Firestore.instance.collection('Users');
 
-  Future updateUserData(
-      { //String emailToDb,
-      //String passwordToDb,
-      String genderToDb,
-      String usernameToDb,
-      String dateToDb}) async {
+  Future updateUserData({
+    String gender,
+    String username,
+    String date,
+  }) async {
     return await usersCollection.document(uid).setData({
       //'Email': emailToDb,
       //'Password': passwordToDb,
-      'Gender': genderToDb,
-      'Username': usernameToDb,
-      'Birthday Date': dateToDb,
+      'Gender': gender,
+      'Username': username,
+      'Birthday Date': date,
     });
   }
 
-  // user data from snapshot
-  /*UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
-    return UserData(
-      uid: uid,
-      usernameToDb: snapshot.data['username'],
-      //emailToDb: snapshot.data['email'],
-      genderToDb: snapshot.data['gender'],
-      dateToDb: snapshot.data['date'],
-    );
-  }*/
-
   // user list from snapshot
-  List<InfoUser> _userListFormSnapshot(QuerySnapshot snapshot) {
+  List<UserInfo> _userListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return InfoUser(
-        username: doc.data['username'] ?? '',
-        email: doc.data['email'] ?? '',
-        gender: doc.data['gender'] ?? '',
-        date: doc.data['date'] ?? '',
+      return UserInfo(
+        username: doc.data['Username'] ?? '',
+        gender: doc.data['Gender'] ?? '',
+        date: doc.data['Birthday Date'] ?? '',
       );
     }).toList();
   }
 
-  // get user strem
-  Stream<List<InfoUser>> get users {
-    return usersCollection.snapshots().map(_userListFormSnapshot);
+  // userData from snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      username: snapshot.data['Username'],
+      gender: snapshot.data['Gender'],
+      date: snapshot.data['Birthday Date'],
+    );
   }
 
-  // get user doc stream
-  Stream<QuerySnapshot> get userData {
-    return usersCollection.snapshots();
+  // get user strem
+  Stream<List<UserInfo>> get users {
+    return usersCollection.snapshots().map(_userListFromSnapshot);
+  }
+
+  // get User doc stream
+  Stream<UserData> get userData {
+    return usersCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 }

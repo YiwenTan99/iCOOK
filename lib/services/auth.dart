@@ -76,9 +76,9 @@ class AuthService {
       await DatabaseService(uid: user.uid).updateUserData(
         //emailToDb: email,
         //passwordToDb: password,
-        usernameToDb: name,
-        genderToDb: gender.toString(),
-        dateToDb: date.toString(),
+        username: name,
+        gender: gender.toString(),
+        date: date.toString(),
       );
       return _userFromFirebaseUser(user);
     } catch (e) {
