@@ -34,90 +34,98 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/main.jpg"),
-            alignment: Alignment.topCenter,
-            fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png"),
+              alignment: Alignment.topCenter,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset(-1,0),
-                end: Offset.zero,
-              ).animate(_animationController),
-              child: FadeTransition(
-                opacity: _animationController,
-                child: Container(
-                  child: Text(
-                    'Bon Appetit',
-                    style: GoogleFonts.lobster(
-                      fontSize: 30,
-                      color: Colors.blueGrey[800],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(-1,0),
+                  end: Offset.zero,
+                ).animate(_animationController),
+                child: FadeTransition(
+                  opacity: _animationController,
+                  child: Container(
+                    child: Text(
+                      'Bon Appetit',
+                      style: GoogleFonts.lobster(
+                        fontSize: 30,
+                        color: Colors.blueGrey[800],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 220.0),
-             SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset(1,0),
-                end: Offset.zero,
-              ).animate(_animationController),
-              child: FadeTransition(
-                opacity: _animationController,
-                child: Container(
-                  child: Text(
-                    'Cook With Love',
-                    style: GoogleFonts.lobster(
-                      fontSize: 30,
-                      color: Colors.redAccent,
+              Image.asset(
+                'assets/images/mainLogo.png',
+                width: 200,
+              ),
+              
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(1,0),
+                  end: Offset.zero,
+                ).animate(_animationController),
+                child: FadeTransition(
+                  opacity: _animationController,
+                  child: Container(
+                    child: Text(
+                      'Cook With Love',
+                      style: GoogleFonts.lobster(
+                        
+                        fontSize: 30,
+                        color: Colors.red[300],
+                      ),
                     ),
                   ),
-                ),
-            ),
-             ),
-             SizedBox(height: 100.0),
-            // ignore: missing_required_param
-            RoundedButton(
-              text: "SIGN UP",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return SignupScreen();
-                    },
-                  ),
-                );
-              },
-            ),
-            // ignore: missing_required_param
-            RoundedButton(
-              text: "LOGIN",
-              textColor: Colors.redAccent,
-              color: kPrimaryLightColor,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+              ),
+              ),
+              SizedBox(height: 80.0),
+              // ignore: missing_required_param
+              RoundedButton(
+                text: "SIGN UP",
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SignupScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+              // ignore: missing_required_param
+              RoundedButton(
+                text: "LOGIN",
+                textColor: Colors.redAccent,
+                color: kPrimaryLightColor,
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

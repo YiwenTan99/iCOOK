@@ -36,20 +36,4 @@ class Recipe {
           imageURL: data['image'],
           mainitem: data['main item'],
         );
-
-  //String get getDurationString => prettyDuration(this.duration);
-  /*Recipe.fromMap(Map<String, dynamic> data, int id)
-      : this(
-          id: id,
-          name: data['name'] == null ? "" : data['name'],
-          category: data['category'] == null ? "" : data['category'],
-          duration: data['duration'] == null ? "" : data['duration'].toString(),
-          ingredients: List<String>.from(data['ingredients']) == null
-              ? []
-              : List<String>.from(data['ingredients']),
-          preparation: List<String>.from(data['preparation']) == null
-              ? []
-              : List<String>.from(data['preparation']),
-          imageURL: data['image'] == null ? null : data['image'],
-        );*/
 }
