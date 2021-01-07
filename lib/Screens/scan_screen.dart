@@ -9,15 +9,15 @@ import 'package:iCOOK/Screens/Broccoli/Broccoli.dart' as Broccoli;
 import 'package:iCOOK/Screens/Carrot/Carrot.dart' as Carrot;
 import 'package:iCOOK/Screens/Grape/Grape.dart' as Grape;
 import 'package:iCOOK/Screens/Mushroom/Mushroom.dart' as Mushroom;
-import 'package:iCOOK/Screens/Orange.dart' as Orange;
-import 'package:iCOOK/Screens/WhiteP.dart' as WhiteP;
-import 'package:iCOOK/Screens/Pumpkin.dart' as Pumpkin;
-import 'package:iCOOK/Screens/Strawberry.dart' as Strawberry;
-import 'package:iCOOK/Screens/RedSnapper.dart' as RedSnapper;
-import 'package:iCOOK/Screens/Stingray.dart' as Stingray;
-import 'package:iCOOK/Screens/Tomato.dart' as Tomato;
-import 'package:iCOOK/Screens/TorpedoS.dart' as TorpedoS;
-import 'package:iCOOK/Screens/YellowT.dart' as YellowT;
+import 'package:iCOOK/Screens/Orange/Orange.dart' as Orange;
+import 'package:iCOOK/Screens/WhiteP/WhiteP.dart' as WhiteP;
+import 'package:iCOOK/Screens/Pumpkin/Pumpkin.dart' as Pumpkin;
+import 'package:iCOOK/Screens/Strawberry/Strawberry.dart' as Strawberry;
+import 'package:iCOOK/Screens/RedSnapper/RedSnapper.dart' as RedSnapper;
+import 'package:iCOOK/Screens/Stingray/Stingray.dart' as Stingray;
+import 'package:iCOOK/Screens/Tomato/Tomato.dart' as Tomato;
+import 'package:iCOOK/Screens/TorpedoS/TorpedoS.dart' as TorpedoS;
+import 'package:iCOOK/Screens/YellowT/YellowT.dart' as YellowT;
 
 class ScanScreen extends StatefulWidget {
   @override
