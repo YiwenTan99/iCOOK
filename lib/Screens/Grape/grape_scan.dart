@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/Screens/Grape/grape_detail.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/models/recipe_detail.dart';
 
 class GrapeScan extends StatelessWidget {
   final Recipe recipe;
@@ -17,7 +17,7 @@ class GrapeScan extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => new GrapeDetailScreen(recipe),
+            builder: (context) => new RecipeDetailScreen(recipe),
           ),
         ),
         child: Padding(

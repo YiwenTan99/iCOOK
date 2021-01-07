@@ -8,7 +8,7 @@ import 'package:iCOOK/Screens/BellPepper/BellPepper.dart' as BellPepper;
 import 'package:iCOOK/Screens/Broccoli/Broccoli.dart' as Broccoli;
 import 'package:iCOOK/Screens/Carrot/Carrot.dart' as Carrot;
 import 'package:iCOOK/Screens/Grape/Grape.dart' as Grape;
-import 'package:iCOOK/Screens/Mushroom.dart' as Mushroom;
+import 'package:iCOOK/Screens/Mushroom/Mushroom.dart' as Mushroom;
 import 'package:iCOOK/Screens/Orange.dart' as Orange;
 import 'package:iCOOK/Screens/WhiteP.dart' as WhiteP;
 import 'package:iCOOK/Screens/Pumpkin.dart' as Pumpkin;

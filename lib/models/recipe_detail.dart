@@ -5,16 +5,16 @@ import 'package:iCOOK/models/recipe.dart';
 import 'package:iCOOK/models/user.dart';
 import 'package:provider/provider.dart';
 
-class BellPepperDetailScreen extends StatefulWidget {
+class RecipeDetailScreen extends StatefulWidget {
   final Recipe recipe;
 
-  BellPepperDetailScreen(this.recipe);
+  RecipeDetailScreen(this.recipe);
 
   @override
-  _BellPepperDetailScreenState createState() => _BellPepperDetailScreenState();
+  _RecipeDetailScreenState createState() => _RecipeDetailScreenState();
 }
 
-class _BellPepperDetailScreenState extends State<BellPepperDetailScreen>
+class _RecipeDetailScreenState extends State<RecipeDetailScreen>
     with SingleTickerProviderStateMixin {
   var user;
   TabController _tabController;

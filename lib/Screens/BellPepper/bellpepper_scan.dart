@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/Screens/BellPepper/bellpepper_detail.dart';
+import 'package:iCOOK/models/recipe_detail.dart';
+
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
@@ -17,7 +18,7 @@ class BellPepperScan extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => new BellPepperDetailScreen(recipe),
+            builder: (context) => new RecipeDetailScreen(recipe),
           ),
         ),
         child: Padding(

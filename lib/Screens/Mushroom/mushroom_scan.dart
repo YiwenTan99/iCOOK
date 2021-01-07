@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/models/recipe_detail.dart';
-
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/models/recipe_detail.dart';
 
-class AppleScan extends StatelessWidget {
+class MushroomScan extends StatelessWidget {
   final Recipe recipe;
 
-  AppleScan({
+  MushroomScan({
     @required this.recipe,
   });
   @override
   Widget build(BuildContext context) {
-    if (recipe.mainitem == 'Apple') {
+    if (recipe.mainitem == 'Mushroom') {
       return GestureDetector(
         onTap: () => Navigator.push(
           context,

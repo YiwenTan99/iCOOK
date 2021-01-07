@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/Screens/Broccoli/broccoli_detail.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
+import 'package:iCOOK/models/recipe_detail.dart';
 
 class BroccoliScan extends StatelessWidget {
   final Recipe recipe;
@@ -17,7 +17,7 @@ class BroccoliScan extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => new BroccoliDetailScreen(recipe),
+            builder: (context) => new RecipeDetailScreen(recipe),
           ),
         ),
         child: Padding(
