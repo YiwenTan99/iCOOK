@@ -74,8 +74,6 @@ class _CarrotState extends State<Carrot> {
                     return new CarrotScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      inFavorites: favorites.contains(document.documentID),
-                      // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),
                 );

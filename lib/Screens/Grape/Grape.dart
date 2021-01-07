@@ -74,8 +74,6 @@ class _GrapeState extends State<Grape> {
                     return new GrapeScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      inFavorites: favorites.contains(document.documentID),
-                      // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),
                 );

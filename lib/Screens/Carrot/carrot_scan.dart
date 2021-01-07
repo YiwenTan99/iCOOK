@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/Screens/detail.dart';
+import 'package:iCOOK/Screens/Carrot/carrot_detail.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
 
 class CarrotScan extends StatelessWidget {
   final Recipe recipe;
-  final bool inFavorites;
-  final Function onFavoriteButtonPressed;
 
-  CarrotScan(
-      {@required this.recipe,
-      @required this.inFavorites,
-      this.onFavoriteButtonPressed});
+  CarrotScan({
+    @required this.recipe,
+  });
   @override
   Widget build(BuildContext context) {
     if (recipe.mainitem == 'Carrot') {
@@ -20,7 +17,7 @@ class CarrotScan extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => new DetailScreen(recipe, inFavorites),
+            builder: (context) => new CarrotDetailScreen(recipe),
           ),
         ),
         child: Padding(
@@ -35,26 +32,6 @@ class CarrotScan extends StatelessWidget {
                 Stack(
                   children: <Widget>[
                     RecipeImage(recipe.imageURL),
-                    Positioned(
-                      child: RawMaterialButton(
-                        constraints: const BoxConstraints(
-                            minWidth: 40.0, minHeight: 40.0),
-                        onPressed: () => onFavoriteButtonPressed(recipe.id),
-                        child: Icon(
-                          // Conditional expression:
-                          // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-                          inFavorites == true
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        elevation: 2.0,
-                        fillColor: Theme.of(context).buttonColor,
-                        shape: CircleBorder(),
-                      ),
-                      top: 2.0,
-                      right: 2.0,
-                    ),
                   ],
                 ),
                 RecipeTitle(recipe, 15),

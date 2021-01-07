@@ -5,16 +5,16 @@ import 'package:iCOOK/models/recipe.dart';
 import 'package:iCOOK/models/user.dart';
 import 'package:provider/provider.dart';
 
-class AppleDetailScreen extends StatefulWidget {
+class CarrotDetailScreen extends StatefulWidget {
   final Recipe recipe;
 
-  AppleDetailScreen(this.recipe);
+  CarrotDetailScreen(this.recipe);
 
   @override
-  _AppleDetailScreenState createState() => _AppleDetailScreenState();
+  _CarrotDetailScreenState createState() => _CarrotDetailScreenState();
 }
 
-class _AppleDetailScreenState extends State<AppleDetailScreen>
+class _CarrotDetailScreenState extends State<CarrotDetailScreen>
     with SingleTickerProviderStateMixin {
   var user;
   TabController _tabController;

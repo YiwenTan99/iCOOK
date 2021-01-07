@@ -5,7 +5,6 @@ import 'package:iCOOK/Screens/Apple/apple_scan.dart';
 import 'package:iCOOK/components/bottomnavi.dart';
 import 'package:iCOOK/models/recipe.dart';
 import 'package:iCOOK/models/user.dart';
-import 'package:iCOOK/utils/store.dart';
 import 'package:provider/provider.dart';
 
 class Apple extends StatefulWidget {
@@ -76,8 +75,6 @@ class _AppleState extends State<Apple> {
                     return new AppleScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      //inFavorites: favorites.contains(document.documentID),
-                      // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),
                 );

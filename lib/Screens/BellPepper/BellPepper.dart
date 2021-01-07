@@ -74,7 +74,6 @@ class _BellPepperState extends State<BellPepper> {
                     return new BellPepperScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      inFavorites: favorites.contains(document.documentID),
                       // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),

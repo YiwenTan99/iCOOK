@@ -74,8 +74,6 @@ class _BroccoliState extends State<Broccoli> {
                     return new BroccoliScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      inFavorites: favorites.contains(document.documentID),
-                      // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),
                 );
