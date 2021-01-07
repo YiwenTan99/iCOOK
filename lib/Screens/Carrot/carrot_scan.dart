@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:iCOOK/Screens/Apple/apple_detail.dart';
-
+import 'package:iCOOK/Screens/detail.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_image.dart';
 import 'package:iCOOK/components/recipeWidgets/recipe_title.dart';
 import 'package:iCOOK/models/recipe.dart';
 
-class AppleScan extends StatelessWidget {
+class CarrotScan extends StatelessWidget {
   final Recipe recipe;
-  //final bool inFavorites;
-  // final Function onFavoriteButtonPressed;
+  final bool inFavorites;
+  final Function onFavoriteButtonPressed;
 
-  AppleScan({
-    @required this.recipe,
-    //@required this.inFavorites,
-    //this.onFavoriteButtonPressed
-  });
+  CarrotScan(
+      {@required this.recipe,
+      @required this.inFavorites,
+      this.onFavoriteButtonPressed});
   @override
   Widget build(BuildContext context) {
-    if (recipe.mainitem == 'Apple') {
+    if (recipe.mainitem == 'Carrot') {
       return GestureDetector(
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => new AppleDetailScreen(recipe),
+            builder: (context) => new DetailScreen(recipe, inFavorites),
           ),
         ),
         child: Padding(
@@ -37,26 +35,26 @@ class AppleScan extends StatelessWidget {
                 Stack(
                   children: <Widget>[
                     RecipeImage(recipe.imageURL),
-                    /*Positioned(
+                    Positioned(
                       child: RawMaterialButton(
                         constraints: const BoxConstraints(
                             minWidth: 40.0, minHeight: 40.0),
-                        // onPressed: () => onFavoriteButtonPressed(recipe.id),
-                        /*child: Icon(
+                        onPressed: () => onFavoriteButtonPressed(recipe.id),
+                        child: Icon(
                           // Conditional expression:
                           // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
                           inFavorites == true
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Theme.of(context).iconTheme.color,
-                        ),*/
+                        ),
                         elevation: 2.0,
                         fillColor: Theme.of(context).buttonColor,
                         shape: CircleBorder(),
                       ),
                       top: 2.0,
                       right: 2.0,
-                    ),*/
+                    ),
                   ],
                 ),
                 RecipeTitle(recipe, 15),

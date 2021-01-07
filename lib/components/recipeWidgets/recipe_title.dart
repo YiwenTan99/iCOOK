@@ -23,7 +23,7 @@ class RecipeTitle extends StatelessWidget {
             style: GoogleFonts.robotoSlab(
               fontSize: 20,
               color: Color(0xFF807A6B),
-            ), 
+            ),
           ),
           // Empty space:
           SizedBox(height: 10.0),
@@ -32,10 +32,10 @@ class RecipeTitle extends StatelessWidget {
               Icon(Icons.timer, size: 20.0, color: Color(0xFFCCC5AF)),
               SizedBox(width: 5.0),
               Text(
-                recipe.getDurationString,
+                recipe.duration.toString(),
                 style: TextStyle(
                   color: Color(0xFFCCC5AF),
-                ),  
+                ),
               ),
             ],
           ),

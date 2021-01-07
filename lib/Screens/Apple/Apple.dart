@@ -76,7 +76,7 @@ class _AppleState extends State<Apple> {
                     return new AppleScan(
                       recipe:
                           Recipe.fromMap(document.data, document.documentID),
-                      inFavorites: favorites.contains(document.documentID),
+                      //inFavorites: favorites.contains(document.documentID),
                       // onFavoriteButtonPressed: _handleFavoritesListChanged,
                     );
                   }).toList(),
