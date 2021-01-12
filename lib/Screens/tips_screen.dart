@@ -220,7 +220,7 @@ class _TipsScreenState extends State<TipsScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return TipsScreen();
+                        return ChefBot();
                       },
                     ),
                   );

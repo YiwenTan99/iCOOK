@@ -436,7 +436,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/Test/model.tflite",
+      model: "assets/Test/ObjectDetectionModel.tflite",
       labels: "assets/Test/labels.txt",
     );
   }
