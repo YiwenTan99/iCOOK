@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iCOOK/Screens/recipes_screen.dart';
 import 'package:iCOOK/Screens/scan_screen.dart';
 import 'package:iCOOK/Screens/tips_screen.dart';
-
 import 'package:iCOOK/Screens/update_screen.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
@@ -17,8 +16,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     RecipesScreen(),
     TipsScreen(),
     UpdateScreen(),
-    //Home(),
-    //Update(),
   ];
 
   void onTappedBar(int index) {
@@ -76,8 +73,6 @@ class _BottomNaviState extends State<BottomNavi> {
     RecipesScreen(),
     TipsScreen(),
     UpdateScreen(),
-    //Home(),
-    //Update(),
   ];
 
   void onTappedBar(int index) {
@@ -135,8 +130,6 @@ class _BottomNavi1State extends State<BottomNavi1> {
     RecipesScreen(),
     TipsScreen(),
     UpdateScreen(),
-    //Home(),
-    //Update(),
   ];
 
   void onTappedBar(int index) {

@@ -20,20 +20,14 @@ class _SignupScreenState extends State<SignupScreen> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-  List<String> gender = ["Male", "Female"];
+
   // text field state
   String name;
-  //String _gender = "";
+
   String email;
   String password;
   DateTime date;
   String error = '';
-
-  // void chooseGender(String value) {
-  // setState(() {
-  //_gender = value;
-  //});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +127,8 @@ class _SignupScreenState extends State<SignupScreen> {
                             dynamic result =
                                 await _auth.registerWithEmailAndPassword(
                                     email, password, name);
+                            print("here is data");
+                            print(result);
                             if (result == null) {
                               setState(() {
                                 error = 'please supply a valid email';

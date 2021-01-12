@@ -20,8 +20,8 @@ class AuthService {
   // auth change user stream
   Stream<User> get user {
     return _auth.onAuthStateChanged
-        // .map((FirebaseUser user) => _userFromFirebaseUser(user));
-        .map(_userFromFirebaseUser);
+        .map((FirebaseUser user) => _userFromFirebaseUser(user));
+    //.map(_userFromFirebaseUser);
   }
 
   // get uid
@@ -67,15 +67,16 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       if (user != null) {
+        print('here1');
         UserUpdateInfo updateuser = UserUpdateInfo();
         updateuser.displayName = name;
         user.updateProfile(updateuser);
       }
-
+      print('here2');
       // create a new document for the user with the uid
       await DatabaseService(uid: user.uid).updateUserData(
-        //emailToDb: email,
-        //passwordToDb: password,
+        // email: email,
+        //password: password,
         username: name,
         gender: gender.toString(),
         date: date.toString(),
